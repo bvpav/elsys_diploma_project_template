@@ -1,3 +1,19 @@
+# Шаблон за курсова работа в ТУ-София
+
+Шаблонът tu_coursework.cls предоставя елегантен и професионален вид на курсова работа, дипломна работа и др.
+
+**ВНИМАНИЕ! Този шаблон не претендира да отговаря на официални изисквания на ТУ-София.**
+За щастие нашият любим ТУ няма излишно строги и педантични изисквания към оформлението на курсови работи. Поради това, повечето шрифтове, цветове, размери и т.н. са запазени от шаблона, който служи за основа на този. Ако Вашият ръководител, рецензент или комисия имат строги изисквания към оформлението, е Ваша отговорност да ги удовлетворите.
+
+Адаптиран от:
+l4proj.cls
+https://github.com/johnhw/l4template
+Template for final year projects in the School of Computing Science at the
+University of Glasgow. Adapted from the level 3 project template originally
+provided by Colin Perkins <csp@dcs.gla.ac.uk>.
+
+## Original README:
+
 # UofG SoCS Level 4 Project LaTeX template
 
 Provides `l4proj.cls`, the standard LaTeX template for Honours Individual Projects.
@@ -17,4 +33,3 @@ to but excluding the appendices and bibliography.
 
 ## LaTeX
 This template has been tested with `pdflatex`. It should also work with `xelatex` and `lualatex`. Note that on Linux you may need to copy the contents of the `fonts/` folder to `~/.fonts/`.
-

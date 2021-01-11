@@ -1,0 +1,67 @@
+\documentclass{tu_coursework}
+
+\begin{document}
+
+%==============================================================================
+%% Метаданни
+\title{Шаблон за курсова работа}
+\author{Димитър Рачков}
+\admgroup{69}
+\faculty{ФЕТТ}
+\facnumber{101218420}
+\supervisor{проф. д.т.н. Стилян Гюров}
+\date{26 Май 2020}
+\city{София}
+
+\maketitle
+
+%==============================================================================
+%% АБСТРАКТ
+\begin{abstract}
+    Every abstract follows a similar pattern. Motivate; set aims; describe work; explain results.
+    \vskip 0.5em
+    ``XYZ is bad. This project investigated ABC to determine if it was better. 
+    ABC used XXX and YYY to implement ZZZ. This is particularly interesting as XXX and YYY have
+    never been used together. It was found that  
+    ABC was 20\% better than XYZ, though it caused rabies in half of subjects.''
+\end{abstract}
+
+%==============================================================================
+%% БЛАГОДАРНОСТИ
+%\chapter*{Благодарности}
+\begin{center}
+    \pagebreak
+    \hspace{0pt}
+    \vfill
+    \large
+    Благодарности на\\Роси Мандраджийката за дето домъкна уредбата,\\на Ванката и Томи за дето опекоха скарата\\и на Миле Китич.
+    \vfill
+    \hspace{0pt}
+    \pagebreak
+\end{center}
+
+%==============================================================================
+%% СЪДЪРЖАНИЕ
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Добра структура е всяка глава да бъде в отделен .tex файл.
+\input{intro}
+\input{example}
+\input{conclusion}
+
+%=====================================================================================================
+%% ПРИЛОЖЕНИЯ
+\addcontentsline{toc}{chapter}{Приложения}
+\appendix
+\input{appendix}
+
+%=====================================================================================================
+%% БИБЛИОГРАФИЯ
+\nocite{soviet_ics}
+\begin{singlespace}
+    \printbibliography
+\end{singlespace}
+
+\end{document}

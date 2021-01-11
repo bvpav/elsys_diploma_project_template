@@ -1,4 +1,7 @@
 % =============================================================================
+% tu_coursework.cls
+% Шаблон за курсова работа в ТУ-София, адаптиран от:
+%
 % l4proj.cls
 %
 % Template for final year projects in the School of Computing Science at the
@@ -7,22 +10,69 @@
 %
 % =============================================================================
 
-\ProvidesClass{l4proj}[%
+\ProvidesClass{tu_coursework}[%
 2009/01/09 Colin Perkins <csp@dcs.gla.ac.uk>.%
 2009/09/16 Modified by Tim Storer <tws@dcs.gla.ac.uk> to support non pdf modes.%
 2011/02/15 Modified by Gregg Hamilton <hamiltgr@dcs.gla.ac.uk> for use in final year projects.%
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
+2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
 ]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 
 \ProcessOptions
-\LoadClass[10pt,a4paper]{report}
+\LoadClass
+[
+	paper=A4,					% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	openright,					% doublepage cleaning ends up right side
+	parskip=half,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	11pt,						% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,		% display table captions above the float env
+	chapterprefix=false,        % do not display a prefix for chapters
+    appendixprefix=false,       % but display a prefix for appendix chapter
+	draft=false,				% value for draft version
+]
+{scrreprt}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[main=bulgarian,english]{babel}
+
+% make all cross-references clickable
+\usepackage[hidelinks,unicode]{hyperref}
+
+\usepackage{color} % colors
+\usepackage[table,dvipsnames]{xcolor}
+
+\usepackage
+[                           % clean thesis style
+	figuresep=colon,
+	sansserif=false,
+	hangfigurecaption=false,
+	hangsection=true,
+	hangsubsection=true,
+	configurelistings=true,
+	colorize=full,
+	colortheme=bluegreen,
+	configurebiblatex=true,
+	bibsys=biber,
+	bibfile=references.bib,
+	bibstyle=numeric,
+	bibsorting=nty,
+]
+{cleanthesis}
 
 % Monospace font is Fira Mono Sans
 % the body font used is FBB (Bembo)
 
 \usepackage{iftex}
+\usepackage{pdfpages}
 
 \ifPDFTeX
   \usepackage{fbb}
@@ -49,27 +99,23 @@
 \usepackage[style]{abstract} % abstract styling
 
 % set bibliography styling
-\usepackage{natbib}
-\bibpunct{(}{)}{;}{a}{}{;}
+%\usepackage{natbib}
+%\bibpunct{(}{)}{;}{a}{}{;}
 
-
-
+\usepackage{multicol}
 \usepackage{etoolbox}
-\usepackage[compact]{titlesec} % section heading formatting
-\usepackage{color} % colors
-\usepackage[table,svgnames]{xcolor}
 \usepackage{parskip} % adjustable line spacing
 \usepackage{listings} % nice code listings
 
 % remove dots from ToC
-\usepackage[titles]{tocloft} 
-\renewcommand{\cftdot}{}
+%\usepackage[titles]{tocloft} 
+%\renewcommand{\cftdot}{}
 % increase spacing in ToC to avoid ascenders and descenders colliding
-\renewcommand\cftsecafterpnum{\vskip 3pt}
-\renewcommand\cftbeforechapskip{5pt}
-\renewcommand\cftsubsecafterpnum{\vskip 1.5pt}
-\renewcommand\cftchapafterpnum{\vskip 4pt}
-\usepackage[nottoc]{tocbibind}
+%\renewcommand\cftsecafterpnum{\vskip 3pt}
+%\renewcommand\cftbeforechapskip{5pt}
+%\renewcommand\cftsubsecafterpnum{\vskip 1.5pt}
+%\renewcommand\cftchapafterpnum{\vskip 4pt}
+%\usepackage[nottoc]{tocbibind}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -113,31 +159,24 @@
 % allow section styling
 %\usepackage{sectsty}
 
-% make all cross-references clickable
-\usepackage[hidelinks]{hyperref}
-
-% enable styled captions
-\usepackage[format=plain,
-labelfont={bf,it},
-textfont=it,tableposition=above]{caption}
-
 \newcommand{\secfont}{\normalfont\sffamily}
 % % style the sections and the abstract
 % \allsectionsfont{\secfont}
-
-
-\renewcommand{\abstractnamefont}{\Large\secfont}
-\renewcommand{\abstitlestyle}[1]{{{\let\clearpage\relax \chapter*{#1}}}}
+\newcommand{\@supervisor}{}
+\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
+\newcommand{\@admgroup}{}
+\newcommand{\admgroup}[1]{\renewcommand{\@admgroup}{#1}}
+\newcommand{\@faculty}{}
+\newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}
+\newcommand{\@facnumber}{}
+\newcommand{\facnumber}[1]{\renewcommand{\@facnumber}{#1}}
+\newcommand{\@city}{}
+\newcommand{\city}[1]{\renewcommand{\@city}{#1}}
 
 \usepackage[toc]{appendix}
 
 % allow subfloats
 \usepackage{subcaption}
-
-
-% fix the margins and linespacing
-\usepackage[top=3.5cm,bottom=4.0cm,left=3.5cm,right=3.5cm]{geometry}
-\setlength{\parskip}{5pt plus 2pt}
 
 % define the title page
 \renewcommand\maketitle{
@@ -150,10 +189,12 @@ textfont=it,tableposition=above]{caption}
 
       % the logo, full page width
       \vspace{1in}
-      \includegraphics[width=\linewidth]{images/CompSci_colour.pdf}
+      \begin{figure}[h]
+        \includegraphics[width=\linewidth]{images/TU-logo_long.png}
+      \end{figure}
       \vskip 0.5em
       \color{UniBlue}
-      {\large \sffamily Honours Individual Project Dissertation}\\ 
+      {\Large \sffamily Факултет Електронна Техника и Технологии}\\ 
 
       % title and author
       
@@ -166,73 +207,56 @@ textfont=it,tableposition=above]{caption}
           \color{UniBlue}
             \noindent
             {\Huge \scshape  \@title \par}%
-            
-            
-            
-            
           
         \end{center}
         \vfill
+        \begin{multicols}{2}
+        Автор:\\
         {\Large
         \textbf{\@author}\\
-        \@date}
-            
-
+        \textbf{\@faculty, Група: \@admgroup,\\ФК\textnumero: \@facnumber}
+        }
+        \vfill
+        Научен ръководител:\\
+        {\Large
+        \textbf{\@supervisor}\\
+        }
+        \vfill
+        \end{multicols}
+        \begin{center}
+        \@date\\
+        \@city
+        \end{center}
     
   \end{titlepage}%
+
 
   \setcounter{footnote}{0}%
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@thanks\@empty
   \global\let\@author\@empty
+  \global\let\@supervisor\@empty
+  \global\let\@admgroup\@empty
+  \global\let\@faculty\@empty
+  \global\let\@facnumber\@empty
   \global\let\@date\@empty
+  \global\let\@city\@empty
   \global\let\@consentname\@empty
   \global\let\@consentdate\@empty
 
   \global\let\@title\@empty
   \global\let\title\relax
   \global\let\author\relax
+  \global\let\supervisor\relax
+  \global\let\admgroup\relax
+  \global\let\faculty\relax
+  \global\let\facnumber\relax
   \global\let\date\relax
+  \global\let\city\relax
   \global\let\and\relax
 }
 \usepackage{booktabs}
-% set up headers and footers
-% no footer, page numbers at top-right
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\fancypagestyle{plain}{%
-    \renewcommand{\headrulewidth}{0pt}%
-    \fancyhf{}%
-    \fancyhead[R]{\thepage}%
-}
-
-\usepackage{titlesec}
-% set up chapter headings
-\usepackage{xstring}
-\titleformat{\chapter}[display]
-  % only show numbers if they aren't Chapter 0 (i.e. front matter)
-  {\normalfont}{}{0pt}{
-    \huge\bfseries\secfont
-    \IfInteger{\thechapter}{\ifnum0=0\thechapter\relax\else\relax {\Huge \thechapter}\ \rule[-0.25em]{0.5pt}{1.5em}\ \fi}
-    {\thechapter \ \rule[-0.25em]{0.5pt}{1.5em}\ }}
-  %[\titlerule]
-  \titlespacing*{\chapter}      
-  {0pt}{0pt}{15pt}  
-
-% let us define a definition for unnumbered chapters.
-% so we don't get a numbered bibliography or table of contents
-\titleformat{name=\chapter,numberless}
-            [display]
-            {\normalfont\huge\bfseries\secfont}
-            {}
-            {0pt}
-            {}
-
 
 % Educational consent form
 \newcommand{\educationalconsent}{
@@ -275,7 +299,7 @@ textfont=it,tableposition=above]{caption}
 }
 
 % adjust margins
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 
 % use (a) in figures
 \captionsetup{subrefformat=parens}
@@ -283,12 +307,6 @@ textfont=it,tableposition=above]{caption}
 % Algorithm typesetting package
 \usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
 \SetAlFnt{\sffamily \small}
-
-% adjust spacing
-\titlespacing{\section}{10pt}{1.5\baselineskip}{8pt plus 3pt minus 3pt}
-\titlespacing{\subsection}{10pt}{\baselineskip}{8pt plus 4pt minus 1pt}
-\titleformat{\subsubsection}[runin]{\bfseries }{}{}{}[]
-\titlespacing{\chapter}{0pt}{0pt}{40pt plus 10pt minus 5pt} 
 
 % switch to roman numeral for frontmatter
 \pagenumbering{roman}
@@ -308,10 +326,19 @@ textfont=it,tableposition=above]{caption}
 
 % allow highlighting of text for todo notes
 \usepackage{soul}
-\newcommand{\todo}[1]{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!} \normalsize}
+\newcommand{\todo}[1]{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
 
 % units for nice formatting of numbers
 \usepackage{siunitx}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{arrow_no_head} = [thick]

@@ -18,22 +18,22 @@
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
 ]
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
 
 \ProcessOptions
 \LoadClass
 [
 	paper=A4,					% paper size --> A4 is default in Germany
 	twoside=true,				% onesite or twoside printing
-	openright,					% doublepage cleaning ends up right side
+	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=true,			% prefix for chapter marks
-	11pt,						% font size
+	fontsize=9pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
-	titlepage=on,				% own page for each title page
-	captions=tableabove,		% display table captions above the float env
+	titlepage=true,				% own page for each title page
+	%captions=tableabove,		% display table captions above the float env
 	chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=false,       % but display a prefix for appendix chapter
 	draft=false,				% value for draft version
@@ -50,45 +50,39 @@
 \usepackage{color} % colors
 \usepackage[table,dvipsnames]{xcolor}
 
+\renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
+
 \usepackage
 [                           % clean thesis style
 	figuresep=colon,
-	sansserif=false,
+	sansserif=true,
 	hangfigurecaption=false,
 	hangsection=true,
 	hangsubsection=true,
-	configurelistings=true,
+	configurelistings=false,
 	colorize=full,
-	colortheme=bluegreen,
+	colortheme=bluemagenta,
 	configurebiblatex=true,
 	bibsys=biber,
 	bibfile=references.bib,
-	bibstyle=numeric,
+	bibstyle=ieee,
 	bibsorting=nty,
 ]
 {cleanthesis}
 
-% Monospace font is Fira Mono Sans
-% the body font used is FBB (Bembo)
+\RequirePackage{dejavu}
+
+\DefineBibliographyStrings{bulgarian}
+{
+  backrefpage = {цитирано на стр.},% originally "cited on page"
+  backrefpages = {цитирано на стр.},% originally "cited on pages"
+}
 
 \usepackage{iftex}
 \usepackage{pdfpages}
-
-\ifPDFTeX
-  \usepackage{fbb}
-  \usepackage{FiraMono}
-  \usepackage{FiraSans}
-  \usepackage{textcomp}
-  \usepackage[english]{babel}
-  \usepackage[T1]{fontenc}
-\else
-  % make sure the fonts are actually set
-  \usepackage{fontspec}
-  \usepackage{polyglossia}
-  \setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
-  \setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
-  \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
-\fi
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage{makecell}
 
 \usepackage[libertine,bigdelims,vvarbb]{newtxmath} % bb from STIX
 \usepackage[cal=boondoxo]{mathalfa} % mathcal
@@ -141,9 +135,9 @@
     keywordstyle=\color{bluekeywords},
     stringstyle=\color{redstrings},
     numberstyle=\color{graynumbers},
-    basicstyle=\ttfamily\linespread{1.15}\footnotesize,
+    basicstyle=\ttfamily\linespread{1.15},
     frame=tb,
-    framesep=12pt,
+    framesep=8pt,
     framexleftmargin=12pt,
     tabsize=4,
     captionpos=b
@@ -168,6 +162,8 @@
 \newcommand{\admgroup}[1]{\renewcommand{\@admgroup}{#1}}
 \newcommand{\@faculty}{}
 \newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}
+\newcommand{\@fac}{}
+\newcommand{\fac}[1]{\renewcommand{\@fac}{#1}}
 \newcommand{\@facnumber}{}
 \newcommand{\facnumber}[1]{\renewcommand{\@facnumber}{#1}}
 \newcommand{\@city}{}
@@ -179,83 +175,90 @@
 \usepackage{subcaption}
 
 % define the title page
-\renewcommand\maketitle{
-  \begin{titlepage}%
-      \definecolor{UniBlue}{HTML}{00355F}
+\renewcommand\maketitle
+{
+    \begin{titlepage}
+        \definecolor{UniBlue}{HTML}{00355F}
+
+        %\let\footnotesize\small
+        \let\footnoterule\relax
+        \let\footnote \thanks
+
+        % the logo, full page width
+        \vspace{1in}
+        \begin{figure}[h]
+            \includegraphics[width=\linewidth]{images/TU-logo_long.png}
+        \end{figure}
+        \vskip 0.5em
         
-      \let\footnotesize\small
-      \let\footnoterule\relax
-      \let\footnote \thanks
+        \color{UniBlue}
+        \begin{center}
+            \LARGE\sffamily\@faculty\\ 
+        \end{center}
 
-      % the logo, full page width
-      \vspace{1in}
-      \begin{figure}[h]
-        \includegraphics[width=\linewidth]{images/TU-logo_long.png}
-      \end{figure}
-      \vskip 0.5em
-      \color{UniBlue}
-      {\Large \sffamily Факултет Електронна Техника и Технологии}\\ 
-
-      % title and author
-      
-      \vspace{2cm}
+        % title and author
+        \vspace{2cm}
         \Large
         \vskip 8em%
-      
         \begin{center}
-          
-          \color{UniBlue}
+            \color{UniBlue}
             \noindent
-            {\Huge \scshape  \@title \par}%
-          
+            \Huge\scshape\@title\par
         \end{center}
         \vfill
+        
         \begin{multicols}{2}
-        Автор:\\
-        {\Large
-        \textbf{\@author}\\
-        \textbf{\@faculty, Група: \@admgroup,\\ФК\textnumero: \@facnumber}
-        }
-        \vfill
-        Научен ръководител:\\
-        {\Large
-        \textbf{\@supervisor}\\
-        }
-        \vfill
+            Автор:\\
+            {
+                \large
+                \textbf{\@author}\\
+                \textbf{\@fac, Група: \@admgroup,\\ФК\textnumero: \@facnumber}
+            }
+            \vfill
+            Научен ръководител:\\
+            {
+                \large
+                \textbf{\@supervisor}\\
+            }
+            \vfill
         \end{multicols}
+        
+        \vfill
+        
         \begin{center}
-        \@date\\
-        \@city
+            \@date\\
+            \@city
         \end{center}
-    
-  \end{titlepage}%
+    \end{titlepage}
 
+    \setcounter{footnote}{0}%
+    \global\let\thanks\relax
+    \global\let\maketitle\relax
+    \global\let\@thanks\@empty
+    \global\let\@author\@empty
+    \global\let\@supervisor\@empty
+    \global\let\@admgroup\@empty
+    \global\let\@faculty\@empty
+    \global\let\@fac\@empty
+    \global\let\@facnumber\@empty
+    \global\let\@date\@empty
+    \global\let\@city\@empty
+    \global\let\@consentname\@empty
+    \global\let\@consentdate\@empty
 
-  \setcounter{footnote}{0}%
-  \global\let\thanks\relax
-  \global\let\maketitle\relax
-  \global\let\@thanks\@empty
-  \global\let\@author\@empty
-  \global\let\@supervisor\@empty
-  \global\let\@admgroup\@empty
-  \global\let\@faculty\@empty
-  \global\let\@facnumber\@empty
-  \global\let\@date\@empty
-  \global\let\@city\@empty
-  \global\let\@consentname\@empty
-  \global\let\@consentdate\@empty
-
-  \global\let\@title\@empty
-  \global\let\title\relax
-  \global\let\author\relax
-  \global\let\supervisor\relax
-  \global\let\admgroup\relax
-  \global\let\faculty\relax
-  \global\let\facnumber\relax
-  \global\let\date\relax
-  \global\let\city\relax
-  \global\let\and\relax
+    \global\let\@title\@empty
+    \global\let\title\relax
+    \global\let\author\relax
+    \global\let\supervisor\relax
+    \global\let\admgroup\relax
+    \global\let\faculty\relax
+    \global\let\fac\relax
+    \global\let\facnumber\relax
+    \global\let\date\relax
+    \global\let\city\relax
+    \global\let\and\relax
 }
+
 \usepackage{booktabs}
 
 % Educational consent form
@@ -280,8 +283,7 @@
     \newpage
         \chapter*{Education Use Consent}
         Consent for educational reuse withheld. Do not distribute.
-    \fi 
-
+    \fi
 }
 
 % highlight boxes

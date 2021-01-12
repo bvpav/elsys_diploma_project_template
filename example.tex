@@ -72,14 +72,14 @@ You may include multiple figures in one float, as in Figure \ref{fig:synthetic},
 
 \begin{figure}[htb] 
     \centering
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}[h]{0.45\textwidth}
         \includegraphics[width=\textwidth]{images/synthetic.png}
         \caption{Synthetic image, black on white.}
         \label{fig:syn1}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[h]{0.45\textwidth}
         \includegraphics[width=\textwidth]{images/synthetic_2.png}
         \caption{Synthetic image, white on black.}
         \label{fig:syn2}
@@ -143,7 +143,7 @@ specialised for normal proposal distributions $q(x^\prime|x) = \mathcal{N}(x, \s
 If you need to include tables, like Table \ref{tab:operators}, use a tool like https://www.tablesgenerator.com/ to generate the table as it is
 extremely tedious otherwise. 
 
-\begin{table}[]
+\begin{table}
     \caption{The standard table of operators in Python, along with their functional equivalents from the \texttt{operator} package. Note that table
     captions go above the table, not below. Do not add additional rules/lines to tables. }\label{tab:operators}
     %\tt 

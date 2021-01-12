@@ -23,20 +23,20 @@
 \ProcessOptions
 \LoadClass
 [
-	paper=A4,					% paper size --> A4 is default in Germany
-	twoside=true,				% onesite or twoside printing
-	open=any,					% doublepage cleaning ends up right side
-	parskip=half,				% spacing value / method for paragraphs
-	chapterprefix=true,			% prefix for chapter marks
-	fontsize=9pt,				% font size
-	headings=normal,			% size of headings
-	bibliography=totoc,			% include bib in toc
-	listof=totoc,				% include listof entries in toc
-	titlepage=true,				% own page for each title page
-	%captions=tableabove,		% display table captions above the float env
-	chapterprefix=false,        % do not display a prefix for chapters
+    paper=A4,                   % paper size --> A4 is default in Germany
+    twoside=true,               % onesite or twoside printing
+    open=any,                   % doublepage cleaning ends up right side
+    parskip=half,               % spacing value / method for paragraphs
+    chapterprefix=true,         % prefix for chapter marks
+    fontsize=9pt,               % font size
+    headings=normal,            % size of headings
+    bibliography=totoc,         % include bib in toc
+    listof=totoc,               % include listof entries in toc
+    titlepage=true,             % own page for each title page
+    %captions=tableabove,       % display table captions above the float env
+    chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=false,       % but display a prefix for appendix chapter
-	draft=false,				% value for draft version
+    draft=false,                % value for draft version
 ]
 {scrreprt}
 
@@ -49,24 +49,25 @@
 
 \usepackage{color} % colors
 \usepackage[table,dvipsnames]{xcolor}
+\RequirePackage{xifthen}
 
 \renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
 
 \usepackage
 [                           % clean thesis style
-	figuresep=colon,
-	sansserif=true,
-	hangfigurecaption=false,
-	hangsection=true,
-	hangsubsection=true,
-	configurelistings=false,
-	colorize=full,
-	colortheme=bluemagenta,
-	configurebiblatex=true,
-	bibsys=biber,
-	bibfile=references.bib,
-	bibstyle=ieee,
-	bibsorting=nty,
+    figuresep=colon,
+    sansserif=true,
+    hangfigurecaption=false,
+    hangsection=true,
+    hangsubsection=true,
+    configurelistings=false,
+    colorize=full,
+    colortheme=bluemagenta,
+    configurebiblatex=true,
+    bibsys=biber,
+    bibfile=references.bib,
+    bibstyle=ieee,
+    bibsorting=nty,
 ]
 {cleanthesis}
 
@@ -158,6 +159,8 @@
 % \allsectionsfont{\secfont}
 \newcommand{\@supervisor}{}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
+\newcommand{\@reviewer}{}
+\newcommand{\reviewer}[1]{\renewcommand{\@reviewer}{#1}}
 \newcommand{\@admgroup}{}
 \newcommand{\admgroup}[1]{\renewcommand{\@admgroup}{#1}}
 \newcommand{\@faculty}{}
@@ -219,8 +222,16 @@
             {
                 \large
                 \textbf{\@supervisor}\\
+            }\\
+            \ifthenelse{\equal{\@reviewer}{}}{}
+            {
+                Рецензент:\\
+                {
+                    \large
+                    \textbf{\@reviewer}\\
+                }
+                \vfill
             }
-            \vfill
         \end{multicols}
         
         \vfill
@@ -237,6 +248,7 @@
     \global\let\@thanks\@empty
     \global\let\@author\@empty
     \global\let\@supervisor\@empty
+    \global\let\@reviewer\@empty
     \global\let\@admgroup\@empty
     \global\let\@faculty\@empty
     \global\let\@fac\@empty
@@ -250,6 +262,7 @@
     \global\let\title\relax
     \global\let\author\relax
     \global\let\supervisor\relax
+    \global\let\reviewer\relax
     \global\let\admgroup\relax
     \global\let\faculty\relax
     \global\let\fac\relax

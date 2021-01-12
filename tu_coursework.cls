@@ -324,7 +324,7 @@
 \SetAlFnt{\sffamily \small}
 
 % switch to roman numeral for frontmatter
-\pagenumbering{roman}
+\pagenumbering{Roman}
 
 % fix itemise so it looks reasonable
 \renewcommand{\@listI}{%

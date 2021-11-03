@@ -17,69 +17,81 @@
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
+2021/11/03 Minor improvements
 ]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
 
 \ProcessOptions
 \LoadClass
 [
-    paper=A4,                   % paper size --> A4 is default in Germany
-    twoside=true,               % onesite or twoside printing
-    open=any,                   % doublepage cleaning ends up right side
-    parskip=half,               % spacing value / method for paragraphs
-    chapterprefix=true,         % prefix for chapter marks
-    fontsize=9pt,               % font size
-    headings=normal,            % size of headings
-    bibliography=totoc,         % include bib in toc
-    listof=totoc,               % include listof entries in toc
-    titlepage=true,             % own page for each title page
-    %captions=tableabove,       % display table captions above the float env
-    chapterprefix=false,        % do not display a prefix for chapters
-    appendixprefix=false,       % but display a prefix for appendix chapter
-    draft=false,                % value for draft version
+	paper=A4,					% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	open=any,					% doublepage cleaning ends up right side
+	parskip=half,				% spacing value / method for paragraphs
+	chapterprefix=false,        % do not display a prefix for chapters
+    appendixprefix=true,        % but display a prefix for appendix chapter
+	fontsize=11pt,				% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=true,				% own page for each title page
+	captions=belowtable,		% display table captions below the float env
+	draft=false,				% value for draft version
 ]
 {scrreprt}
 
-\usepackage[T2A,T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[main=bulgarian,english]{babel}
+% Monospace font is Fira Mono Sans
+% the body font used is FBB (Bembo)
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage{fbb}
+  \usepackage{FiraMono}
+  \usepackage{FiraSans}
+  \usepackage{textcomp}
+  \usepackage[utf8]{inputenc}
+  \usepackage[T2A,T1]{fontenc}
+  \usepackage[main=bulgarian,english]{babel}
+\else
+  % make sure the fonts are actually set
+  \usepackage{fontspec}
+  \usepackage{polyglossia}
+  \setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
+  \setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
+  \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
+\fi
+
+%\usepackage{substitutefont}
+%\substitutefont{T2A}{\rmdefault}{Tempora-TLF}
 
 % make all cross-references clickable
 \usepackage[hidelinks,unicode]{hyperref}
 
-\usepackage{color} % colors
-\usepackage[table,dvipsnames]{xcolor}
 \RequirePackage{xifthen}
 
 \renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
 
-\usepackage
-[                           % clean thesis style
-    figuresep=colon,
-    sansserif=true,
-    hangfigurecaption=false,
-    hangsection=true,
-    hangsubsection=true,
-    configurelistings=false,
-    colorize=full,
-    colortheme=bluemagenta,
-    configurebiblatex=true,
-    bibsys=biber,
-    bibfile=references.bib,
-    bibstyle=ieee,
-    bibsorting=nty,
-]
-{cleanthesis}
-
-\RequirePackage{dejavu}
+\usepackage[                           % clean thesis style
+	figuresep=colon,
+	sansserif=true,
+	hangfigurecaption=false,
+	hangsection=true,
+	hangsubsection=true,
+	configurelistings=false,
+	colorize=full,
+	colortheme=bluemagenta,
+	configurebiblatex=true,
+	bibsys=biber,
+	bibfile=references.bib,
+	bibstyle=ieee,
+	bibsorting=nty,
+]{cleanthesis}
 
 \DefineBibliographyStrings{bulgarian}
 {
-  backrefpage = {цитирано на стр.},% originally "cited on page"
-  backrefpages = {цитирано на стр.},% originally "cited on pages"
+  backrefpage = {цитирано на стр.},     % originally "cited on page"
+  backrefpages = {цитирано на стр.},    % originally "cited on pages"
 }
 
-\usepackage{iftex}
 \usepackage{pdfpages}
 \usepackage{placeins}
 \usepackage{multirow}
@@ -93,24 +105,10 @@
 \usepackage{amsmath,amsfonts,amsbsy,amssymb}
 \usepackage[style]{abstract} % abstract styling
 
-% set bibliography styling
-%\usepackage{natbib}
-%\bibpunct{(}{)}{;}{a}{}{;}
-
 \usepackage{multicol}
 \usepackage{etoolbox}
 \usepackage{parskip} % adjustable line spacing
 \usepackage{listings} % nice code listings
-
-% remove dots from ToC
-%\usepackage[titles]{tocloft} 
-%\renewcommand{\cftdot}{}
-% increase spacing in ToC to avoid ascenders and descenders colliding
-%\renewcommand\cftsecafterpnum{\vskip 3pt}
-%\renewcommand\cftbeforechapskip{5pt}
-%\renewcommand\cftsubsecafterpnum{\vskip 1.5pt}
-%\renewcommand\cftchapafterpnum{\vskip 4pt}
-%\usepackage[nottoc]{tocbibind}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -136,9 +134,9 @@
     keywordstyle=\color{bluekeywords},
     stringstyle=\color{redstrings},
     numberstyle=\color{graynumbers},
-    basicstyle=\ttfamily\linespread{1.15},
+    basicstyle=\ttfamily\linespread{1.15}\footnotesize,
     frame=tb,
-    framesep=8pt,
+    framesep=12pt,
     framexleftmargin=12pt,
     tabsize=4,
     captionpos=b
@@ -156,7 +154,7 @@
 
 \newcommand{\secfont}{\normalfont\sffamily}
 % % style the sections and the abstract
-% \allsectionsfont{\secfont}
+%\allsectionsfont{\secfont}
 \newcommand{\@supervisor}{}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
 \newcommand{\@reviewer}{}
@@ -196,12 +194,12 @@
         
         \color{UniBlue}
         \begin{center}
-            \LARGE\sffamily\@faculty\\ 
+            \Large\sffamily\@faculty\\ 
         \end{center}
 
         % title and author
         \vspace{2cm}
-        \Large
+        \large
         \vskip 8em%
         \begin{center}
             \color{UniBlue}
@@ -211,6 +209,7 @@
         \vfill
         
         \begin{multicols}{2}
+            \noindent
             Автор:\\
             {
                 \large
@@ -218,6 +217,7 @@
                 \textbf{\@fac, Група: \@admgroup,\\ФК\textnumero: \@facnumber}
             }
             \vfill
+            \noindent
             Научен ръководител:\\
             {
                 \large
@@ -314,7 +314,7 @@
 }
 
 % adjust margins
-%\setlength{\parindent}{0pt}
+\setlength{\parindent}{12pt}
 
 % use (a) in figures
 \captionsetup{subrefformat=parens}

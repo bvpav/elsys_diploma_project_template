@@ -16,6 +16,19 @@
 \date{\today}
 \city{София}
 
+\makeatletter
+\hypersetup{					    % настройки на пакета hyperref
+	pdftitle={\@title},      	    % 	- заглавие (PDF meta)
+	%pdfsubject={\thesisSubject},   % 	- тема (PDF meta)
+	pdfauthor={\@author},            % 	- автор (PDF meta)
+	plainpages=false,			    % 	-
+	pdfborder={0 0 0},			    % 	-
+	breaklinks=true,			    % 	- разрешаване на нови редове в линкове
+	bookmarksnumbered=true,		    %
+	bookmarksopen=true			    %
+}
+\makeatother
+
 \maketitle
 
 %==============================================================================
@@ -48,6 +61,8 @@
 \tableofcontents
 \listoffigures
 \listoftables
+
+\pagenumbering{arabic}
 
 % Добра структура е всяка глава да бъде в отделен .tex файл.
 \input{intro}

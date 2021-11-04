@@ -23,6 +23,7 @@ This work consists of all files listed in MANIFEST.md.
 
 ```
 TU-Sofia_coursework_template/
+|-- images/                     - Example images and TU-Sofia logo
 |-- cleanthesis.sty             - Clean Thesis style file
 |-- tu_coursework.cls           - the TU_Coursework class
 |-- tu_coursework.tex           - example main file

@@ -17,28 +17,29 @@
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
-2021/11/03 Minor improvements
+2021/11/03 Minor improvements%
 ]
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
 
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
 \ProcessOptions
-\LoadClass
-[
-	paper=A4,					% paper size --> A4 is default in Germany
+
+\LoadClass[
+    % For some stupid reason the next line causes a warning. It's the default value anyway, so it stays commented.
+	%paper=A4,					% paper size --> A4 is default in Bulgaria
 	twoside=true,				% onesite or twoside printing
 	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=true,        % but display a prefix for appendix chapter
-	fontsize=11pt,				% font size
+	fontsize=9.2pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
 	titlepage=true,				% own page for each title page
 	captions=belowtable,		% display table captions below the float env
 	draft=false,				% value for draft version
-]
-{scrreprt}
+	DIV=calc,
+]{scrreprt}
 
 % Monospace font is Fira Mono Sans
 % the body font used is FBB (Bembo)
@@ -59,9 +60,6 @@
   \setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
   \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
-
-%\usepackage{substitutefont}
-%\substitutefont{T2A}{\rmdefault}{Tempora-TLF}
 
 % make all cross-references clickable
 \usepackage[hidelinks,unicode]{hyperref}
@@ -86,12 +84,6 @@
 	bibsorting=nty,
 ]{cleanthesis}
 
-\DefineBibliographyStrings{bulgarian}
-{
-  backrefpage = {цитирано на стр.},     % originally "cited on page"
-  backrefpages = {цитирано на стр.},    % originally "cited on pages"
-}
-
 \usepackage{pdfpages}
 \usepackage{placeins}
 \usepackage{multirow}
@@ -104,6 +96,7 @@
 \usepackage{anyfontsize} % allow any size of font
 \usepackage{amsmath,amsfonts,amsbsy,amssymb}
 \usepackage[style]{abstract} % abstract styling
+%\usepackage{parskip}
 
 \usepackage{multicol}
 \usepackage{etoolbox}

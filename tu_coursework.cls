@@ -38,7 +38,7 @@
 	titlepage=true,				% own page for each title page
 	captions=belowtable,		% display table captions below the float env
 	draft=false,				% value for draft version
-	DIV=calc,
+	DIV=8,                      % suppress DIV warnings, overwritten by cleanthesis.sty
 ]{scrreprt}
 
 % Monospace font is Fira Mono Sans
@@ -96,7 +96,7 @@
 
 \usepackage{microtype} % improve typography
 \usepackage{anyfontsize} % allow any size of font
-\usepackage{amsmath,amsfonts,amsbsy,amssymb}
+\usepackage{amsmath,amsfonts,amsbsy}
 \usepackage[style]{abstract} % abstract styling
 %\usepackage{parskip}
 

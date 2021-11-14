@@ -226,7 +226,7 @@
                 {
                     \@fac, Група \@admgroup,\\
                     ФК\textnumero\ \@facnumber\\
-                    Специалност \@speciality
+                    специалност \@speciality
                 }
             }
             \vfill\null
@@ -238,8 +238,11 @@
                 \textbf
                 {
                     \@supervisor\\
-                    катедра 
-                    \@supervisorchair}\\
+                    \ifthenelse{\equal{\@supervisorchair}{}}{}
+                    {
+                        катедра 
+                        \@supervisorchair}\\
+                    }
             }\\
             \ifthenelse{\equal{\@reviewer}{}}{}
             {
@@ -249,8 +252,11 @@
                     \textbf
                     {
                         \@reviewer\\
-                        катедра 
-                        \@reviewerchair}\\
+                        \ifthenelse{\equal{\@reviewerchair}{}}{}
+                        {
+                            катедра 
+                            \@reviewerchair}\\
+                        }
                 }
             }
             \vfill

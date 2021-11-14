@@ -152,8 +152,12 @@
 %\allsectionsfont{\secfont}
 \newcommand{\@supervisor}{}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
+\newcommand{\@supervisorchair}{}
+\newcommand{\supervisorchair}[1]{\renewcommand{\@supervisorchair}{#1}}
 \newcommand{\@reviewer}{}
 \newcommand{\reviewer}[1]{\renewcommand{\@reviewer}{#1}}
+\newcommand{\@reviewerchair}{}
+\newcommand{\reviewerchair}[1]{\renewcommand{\@reviewerchair}{#1}}
 \newcommand{\@admgroup}{}
 \newcommand{\admgroup}[1]{\renewcommand{\@admgroup}{#1}}
 \newcommand{\@faculty}{}
@@ -162,6 +166,10 @@
 \newcommand{\fac}[1]{\renewcommand{\@fac}{#1}}
 \newcommand{\@facnumber}{}
 \newcommand{\facnumber}[1]{\renewcommand{\@facnumber}{#1}}
+\newcommand{\@speciality}{}
+\newcommand{\speciality}[1]{\renewcommand{\@speciality}{#1}}
+\newcommand{\@doctype}{}
+\newcommand{\doctype}[1]{\renewcommand{\@doctype}{#1}}
 \newcommand{\@city}{}
 \newcommand{\city}[1]{\renewcommand{\@city}{#1}}
 
@@ -197,7 +205,12 @@
         \large
         \vskip 8em%
         \begin{center}
-            \color{UniBlue}
+            \noindent
+            \fontsize{35}{35}
+            \scshape\@doctype\par
+            \normalsize
+            \Large
+            на тема\par
             \noindent
             \Huge\scshape\@title\par
         \end{center}
@@ -209,24 +222,38 @@
             {
                 \large
                 \textbf{\@author}\\
-                \textbf{\@fac, Група: \@admgroup,\\ФК\textnumero: \@facnumber}
+                \textbf
+                {
+                    \@fac, Група \@admgroup,\\
+                    ФК\textnumero\ \@facnumber\\
+                    Специалност \@speciality
+                }
             }
-            \vfill
+            \vfill\null
+            \columnbreak
             \noindent
             Научен ръководител:\\
             {
                 \large
-                \textbf{\@supervisor}\\
+                \textbf
+                {
+                    \@supervisor\\
+                    катедра 
+                    \@supervisorchair}\\
             }\\
             \ifthenelse{\equal{\@reviewer}{}}{}
             {
                 Рецензент:\\
                 {
                     \large
-                    \textbf{\@reviewer}\\
+                    \textbf
+                    {
+                        \@reviewer\\
+                        катедра 
+                        \@reviewerchair}\\
                 }
-                \vfill
             }
+            \vfill
         \end{multicols}
         
         \vfill

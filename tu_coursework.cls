@@ -189,7 +189,7 @@
         
         \color{UniBlue}
         \begin{center}
-            \Large\sffamily\@faculty\\ 
+            \huge\sffamily\@faculty\\ 
         \end{center}
 
         % title and author

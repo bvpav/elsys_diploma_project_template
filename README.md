@@ -9,13 +9,13 @@
 
 Базиран на:
 
-UofG SoCS Level 4 Project LaTeX template by johnhw
+UofG SoCS Level 4 Project LaTeX template by John Williamson
 https://github.com/johnhw/l4template  
 Template for final year projects in the School of Computing Science at the
 University of Glasgow. Adapted from the level 3 project template originally
 provided by Colin Perkins <csp@dcs.gla.ac.uk>.
 
-и  
+и
 
 Clean Thesis by Ricardo Langner
 https://github.com/derric/cleanthesis  

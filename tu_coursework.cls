@@ -31,7 +31,7 @@
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=true,        % but display a prefix for appendix chapter
-	fontsize=9.2pt,				% font size
+	fontsize=9pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
@@ -83,6 +83,8 @@
 	bibstyle=ieee,
 	bibsorting=nty,
 ]{cleanthesis}
+
+\textheight=24cm
 
 \usepackage{pdfpages}
 \usepackage{placeins}

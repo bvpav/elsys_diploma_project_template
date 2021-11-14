@@ -395,7 +395,7 @@
 \renewcommand{\descriptionlabel}[1]{%
 	\hspace*{\labelsep}%
 	\color{ctcolorlistlabel}%
-	\tgherosfont\textbf{#1}%
+	\customfont\textbf{#1}%
 }
 \newenvironment{my_list_desc}
 	{\begin{description}[%
@@ -416,7 +416,7 @@
                                     % and chapters as leftmark
 \setlength{\footheight}{120pt}      % avoids scrlayer-scrpage warning:
                                     % footheight to low warning
-\setlength{\footskip}{185pt}        % BAD HACK that moves the foot downwards
+\setlength{\footskip}{150pt}        % BAD HACK that moves the foot downwards
 \KOMAoption{footwidth}{foot:53pt}   % BAD HACK that moves the foot towards
                                     % the outer border
 \setkomafont{pagefoot}{\ctfontfootertext}           % font for footer
@@ -559,26 +559,25 @@
 \newcommand*{\ctSetFont}[3]{%
 	arg1=#1, arg2=#2, arg3=#3%
 }
-
 % own font definitions
 \newcommand{\helv}{\fontfamily{DejaVuSans-TLF}\fontsize{9}{10}\selectfont}
 \newcommand{\book}{\fontfamily{DejaVuSans-TLF}\fontseries{m}\fontsize{10}{11}\selectfont}
-\newcommand{\tgherosfont}{\fontfamily{DejaVuSans-TLF}\selectfont}
+\newcommand{\customfont}{\fontfamily{DejaVuSans-TLF}\selectfont}
 
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\book\fontsize{60}{60}\selectfont}
-\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\huge \tgherosfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{DejaVuSans-TLF}\selectfont}
-\newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\LARGE \tgherosfont}
-\newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\Large \tgherosfont}
-\newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\tgherosfont\small\bfseries}
+\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\Huge \customfont\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\Huge \fontfamily{DejaVuSans-TLF}\selectfont}
+\newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\LARGE \customfont}
+\newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\Large \customfont}
+\newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\customfont\small\bfseries}
 
 \newcommand{\ctfontfooterpagenumber}{%
     \color{ctcolorfooterpage}%
-    \normalfont\normalsize\bfseries \tgherosfont%
+    \normalfont\normalsize\bfseries \customfont%
 }
 \newcommand{\ctfontfootertext}{%
     \color{ctcolorfootertitle}%
-    \normalfont \tgherosfont%
+    \normalfont \customfont%
 }
 %
 % headings
@@ -586,8 +585,8 @@
 \setkomafont{chapter}{\thesischapterfont} % for chapter entries
 \setkomafont{section}{\thesissectionfont} % for section entries
 \setkomafont{subsection}{\thesissubsectionfont} % for section entries
-\addtokomafont{subsubsection}{\tgherosfont}
-%\addtokomafont{paragraph}{\tgherosfont}
+\addtokomafont{subsubsection}{\customfont}
+%\addtokomafont{paragraph}{\customfont}
 \setkomafont{paragraph}{\thesisparagraphfont}
 
 %\setkomafont{subsection}{\large} % for subsection entries
@@ -737,3 +736,6 @@
 %
 % Clean signs around word origins in definitions
 %\newcommand{\cthesisorigin}[1]{\textsf{\textlangle}#1\textsf{\textrangle}}
+
+
+

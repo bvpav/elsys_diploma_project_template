@@ -410,3 +410,5 @@
     \cleardoublepage
     \addcontentsline{toc}{chapter}{Приложения}%
 }
+
+\DeclareMathSizes{9}{10.5}{7.5}{7.5}

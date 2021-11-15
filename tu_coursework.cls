@@ -385,3 +385,28 @@
 \tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \tikzstyle{arrow_no_head} = [thick]
+
+
+% Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
+\renewcommand{\appendix}
+{%
+    \setcounter{chapter}{0}
+    \setcounter{section}{0}
+    \renewcommand\chapapp{\appendixname}
+    \renewcommand\thechapter{\Alph{chapter}}
+    \renewcommand\theHchapter{\Alph{chapter}}
+    \renewcommand{\chaptermark}[1]{%
+        \markboth{%
+            \ctfontfootertext
+            % use \@chapapp instead of \chaptername to avoid
+            % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+    		\hspace{.25cm}%
+            %\protect\begin{minipage}[t]{.65\textwidth}%
+                ##1%
+            %\protect\end{minipage}%
+        }{}%
+    }
+    \cleardoublepage
+    \addcontentsline{toc}{chapter}{Приложения}%
+}

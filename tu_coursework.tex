@@ -94,7 +94,14 @@
 
 %=====================================================================================================
 %% ПРИЛОЖЕНИЯ
-\appendix
+% Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \thechapter от hyperref
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\renewcommand\chapapp{\appendixname}
+\renewcommand\thechapter{\Alph{chapter}}
+\renewcommand\theHchapter{\Alph{chapter}}
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Приложения}
 \input{appendix}
 
 \end{document}

@@ -61,10 +61,12 @@
   \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
 
+\RequirePackage{xifthen}
+
 % make all cross-references clickable
 \usepackage[hidelinks,unicode]{hyperref}
 
-\RequirePackage{xifthen}
+\usepackage[titletoc]{appendix}
 
 \renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
 
@@ -172,8 +174,6 @@
 \newcommand{\doctype}[1]{\renewcommand{\@doctype}{#1}}
 \newcommand{\@city}{}
 \newcommand{\city}[1]{\renewcommand{\@city}{#1}}
-
-\usepackage[toc]{appendix}
 
 % allow subfloats
 \usepackage{subcaption}

@@ -425,7 +425,8 @@
             %\protect\end{minipage}%
         }{}%
     }
-    \cleardoublepage
+    %\cleardoublepage
+    \clearpage
     \addcontentsline{toc}{chapter}{Приложения}%
 }
 

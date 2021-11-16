@@ -106,6 +106,7 @@
 \usepackage{etoolbox}
 \usepackage{parskip} % adjustable line spacing
 \usepackage{listings} % nice code listings
+\usepackage{float}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output

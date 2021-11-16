@@ -136,7 +136,25 @@
     framesep=12pt,
     framexleftmargin=12pt,
     tabsize=4,
-    captionpos=b
+    captionpos=b,
+    numbers=left
+}
+
+\let\origthelstnumber\thelstnumber
+\makeatletter
+\newcommand*\Suppressnumber{%
+  \lst@AddToHook{OnNewLine}{%
+    \let\thelstnumber\relax%
+     \advance\c@lstnumber-\@ne\relax%
+    }%
+}
+
+\newcommand*\Reactivatenumber[1]{%
+  \setcounter{lstnumber}{\numexpr#1-1\relax}
+  \lst@AddToHook{OnNewLine}{%
+   \let\thelstnumber\origthelstnumber%
+   \refstepcounter{lstnumber}
+  }%
 }
 %% ---
 

@@ -99,6 +99,7 @@
 \usepackage{microtype} % improve typography
 \usepackage{anyfontsize} % allow any size of font
 \usepackage{amsmath,amsfonts,amsbsy}
+\usepackage{mathtools}
 \usepackage[style]{abstract} % abstract styling
 %\usepackage{parskip}
 
@@ -107,6 +108,7 @@
 \usepackage{parskip} % adjustable line spacing
 \usepackage{listings} % nice code listings
 \usepackage{float}
+\usepackage{siunitx}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -137,25 +139,7 @@
     framesep=12pt,
     framexleftmargin=12pt,
     tabsize=4,
-    captionpos=b,
-    numbers=left
-}
-
-\let\origthelstnumber\thelstnumber
-\makeatletter
-\newcommand*\Suppressnumber{%
-  \lst@AddToHook{OnNewLine}{%
-    \let\thelstnumber\relax%
-     \advance\c@lstnumber-\@ne\relax%
-    }%
-}
-
-\newcommand*\Reactivatenumber[1]{%
-  \setcounter{lstnumber}{\numexpr#1-1\relax}
-  \lst@AddToHook{OnNewLine}{%
-   \let\thelstnumber\origthelstnumber%
-   \refstepcounter{lstnumber}
-  }%
+    captionpos=b
 }
 %% ---
 
@@ -431,4 +415,4 @@
     \addcontentsline{toc}{chapter}{Приложения}%
 }
 
-\DeclareMathSizes{9}{10.5}{7.5}{7.5}
+%\DeclareMathSizes{9}{10.5}{7.5}{7.5}

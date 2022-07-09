@@ -23,17 +23,16 @@ This work consists of all files listed in MANIFEST.md.
 
 ```
 TU-Sofia_coursework_template/
-|-- images/                             - example images and TU-Sofia logos
-|-- documents/assignment.pdf            - example coursework assignment
-|-- documents/guide_to_visualising.pdf  - a guide for making charts and figures
-|-- cleanthesis.sty                     - Clean Thesis style file
-|-- tu_coursework.cls                   - the TU_Coursework class
-|-- tu_coursework.tex                   - example main file
-|-- intro.tex                           - part of example
-|-- example.tex                         - part of example
-|-- conclusion.tex                      - part of example
-|-- appendix.tex                        - part of example
-|-- references.bib                      - part of example
-|-- MANIFEST.md                         - this file
-|-- README.md                           - readme file
+|-- images/                     - Example images and TU-Sofia logos
+|-- documents/assignment        - Example coursework assignment
+|-- cleanthesis.sty             - Clean Thesis style file
+|-- tu_coursework.cls           - the TU_Coursework class
+|-- tu_coursework.tex           - example main file
+|-- intro.tex                   - part of example
+|-- example.tex                 - part of example
+|-- conclusion.tex              - part of example
+|-- appendix.tex                - part of example
+|-- references.bib              - part of example
+|-- MANIFEST.md                 - this file
+|-- README.md                   - readme file
 ```

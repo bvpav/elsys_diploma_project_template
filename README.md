@@ -8,7 +8,7 @@
 Базиран на:
 
 UofG SoCS Level 4 Project LaTeX template by johnhw
-https://github.com/johnhw/l4template  
+https://github.com/johnhw/l4template
 Template for final year projects in the School of Computing Science at the
 University of Glasgow. Adapted from the level 3 project template originally
 provided by Colin Perkins <csp@dcs.gla.ac.uk>.
@@ -16,5 +16,5 @@ provided by Colin Perkins <csp@dcs.gla.ac.uk>.
 и
 
 Clean Thesis by Ricardo Langner
-https://github.com/derric/cleanthesis  
+https://github.com/derric/cleanthesis
 A Clean LaTeX Style for Thesis Documents

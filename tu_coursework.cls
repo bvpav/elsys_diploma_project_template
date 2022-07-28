@@ -403,8 +403,8 @@
             \ctfontfootertext
             % use \@chapapp instead of \chaptername to avoid
             % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
-    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
-    		\hspace{.25cm}%
+            {\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+            \hspace{.25cm}%
             %\protect\begin{minipage}[t]{.65\textwidth}%
                 ##1%
             %\protect\end{minipage}%
@@ -413,6 +413,72 @@
     %\cleardoublepage
     \clearpage
     \addcontentsline{toc}{chapter}{Приложения}%
+}
+
+\hypersetup{					    % настройки на пакета hyperref
+	plainpages=false,			    %
+	pdfborder={0 0 0},			    %
+	breaklinks=true,			    % - разрешаване на нови редове в линкове
+	bookmarksnumbered=true,		    %
+	bookmarksopen=true			    %
+}
+
+% Превод на \autoref
+\addto\extrasbulgarian
+{%
+	\def\figureautorefname{фигура}%
+}
+\addto\extrasbulgarian
+{%
+	\def\tableautorefname{таблица}%
+}
+\addto\extrasbulgarian
+{%
+	\def\partautorefname{част}%
+}
+\addto\extrasbulgarian
+{%
+	\def\appendixautorefname{приложение}%
+}
+\addto\extrasbulgarian
+{%
+	\def\equationautorefname{уравнение}%
+}
+\addto\extrasbulgarian
+{%
+	\def\Itemautorefname{точка}%
+}
+\addto\extrasbulgarian
+{%
+	\def\chapterautorefname{глава}%
+}
+\addto\extrasbulgarian
+{%
+	\def\sectionautorefname{ред}%
+}
+\addto\extrasbulgarian
+{%
+	\def\subsectionautorefname{подточка}%
+}
+\addto\extrasbulgarian
+{%
+	\def\subsubsectionautorefname{подподточка}%
+}
+\addto\extrasbulgarian
+{%
+	\def\paragraphautorefname{параграф}%
+}
+\addto\extrasbulgarian
+{%
+	\def\Hfootnoteautorefname{бележка}%
+}
+\addto\extrasbulgarian
+{%
+	\def\AMSautorefname{уравнение}%
+}
+\addto\extrasbulgarian
+{%
+	\def\theoremautorefname{теорема}%
 }
 
 %\DeclareMathSizes{9}{10.5}{7.5}{7.5}

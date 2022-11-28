@@ -92,6 +92,7 @@
 \usepackage{placeins}
 \usepackage{multirow}
 \usepackage{makecell}
+\usepackage{csvsimple}
 
 \usepackage[libertine,bigdelims,vvarbb]{newtxmath} % bb from STIX
 \usepackage[cal=boondoxo]{mathalfa} % mathcal
@@ -106,9 +107,8 @@
 \usepackage{multicol}
 \usepackage{etoolbox}
 \usepackage{parskip} % adjustable line spacing
-\usepackage{listings} % nice code listings
 \usepackage{float}
-\usepackage{siunitx}
+\usepackage[exponent-product=\cdot]{siunitx}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -133,6 +133,7 @@
     commentstyle=\color{greencomments},
     keywordstyle=\color{bluekeywords},
     stringstyle=\color{redstrings},
+    numbers=left,
     numberstyle=\color{graynumbers},
     basicstyle=\ttfamily\linespread{1.15}\footnotesize,
     frame=tb,
@@ -141,6 +142,7 @@
     tabsize=4,
     captionpos=b
 }
+\renewcommand{\lstlistingname}{Програмен код}
 %% ---
 
 % nice number printing
@@ -403,8 +405,8 @@
             \ctfontfootertext
             % use \@chapapp instead of \chaptername to avoid
             % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
-            {\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
-            \hspace{.25cm}%
+    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+    		\hspace{.25cm}%
             %\protect\begin{minipage}[t]{.65\textwidth}%
                 ##1%
             %\protect\end{minipage}%
@@ -418,7 +420,7 @@
 \hypersetup{					    % настройки на пакета hyperref
 	plainpages=false,			    %
 	pdfborder={0 0 0},			    %
-	breaklinks=true,			    % - разрешаване на нови редове в линкове
+	breaklinks=true,			    % разрешаване на нови редове в линкове
 	bookmarksnumbered=true,		    %
 	bookmarksopen=true			    %
 }

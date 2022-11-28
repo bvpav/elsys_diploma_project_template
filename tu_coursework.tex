@@ -28,12 +28,7 @@
 \hypersetup{					    % настройки на пакета hyperref
 	pdftitle={\@title},      	    % 	- заглавие (PDF meta)
 	%pdfsubject={\thesisSubject},   % 	- тема (PDF meta)
-	pdfauthor={\@author},           % 	- автор (PDF meta)
-	plainpages=false,			    % 	-
-	pdfborder={0 0 0},			    % 	-
-	breaklinks=true,			    % 	- разрешаване на нови редове в линкове
-	bookmarksnumbered=true,		    %
-	bookmarksopen=true			    %
+	pdfauthor={\@author}            % 	- автор (PDF meta)
 }
 \makeatother
 
@@ -46,15 +41,8 @@
 \cleardoublepage
 
 %=====================================================================================================
-%% АБСТРАКТ
-\begin{abstract}
-    Every abstract follows a similar pattern. Motivate; set aims; describe work; explain results.
-    \vskip 0.5em
-    ``XYZ is bad. This project investigated ABC to determine if it was better. 
-    ABC used XXX and YYY to implement ZZZ. This is particularly interesting as XXX and YYY have
-    never been used together. It was found that  
-    ABC was 20\% better than XYZ, though it caused rabies in half of subjects.''
-\end{abstract}
+%% ДЕКЛАРАЦИЯ ЗА АКАДЕМИЧНА ЧЕСТНОСТ
+\includepdf[pages={1}]{documents/VGaristov_zadanie_2022.pdf}
 \cleardoublepage
 
 %=====================================================================================================
@@ -70,6 +58,18 @@
     \hspace{0pt}
     \pagebreak
 \end{center}
+\cleardoublepage
+
+%=====================================================================================================
+%% АБСТРАКТ
+\begin{abstract}
+    Every abstract follows a similar pattern. Motivate; set aims; describe work; explain results.
+    \vskip 0.5em
+    ``XYZ is bad. This project investigated ABC to determine if it was better. 
+    ABC used XXX and YYY to implement ZZZ. This is particularly interesting as XXX and YYY have
+    never been used together. It was found that  
+    ABC was 20\% better than XYZ, though it caused rabies in half of subjects.''
+\end{abstract}
 \cleardoublepage
 
 %=====================================================================================================

@@ -25,13 +25,13 @@
 
 \LoadClass[
     % For some stupid reason the next line causes a warning. It's the default value anyway, so it stays commented.
-	%paper=A4,					% paper size --> A4 is default in Bulgaria
+	paper=A4,					% paper size --> A4 is default in Bulgaria
 	twoside=true,				% onesite or twoside printing
 	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=true,        % but display a prefix for appendix chapter
-	fontsize=9pt,				% font size
+	fontsize=11pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
@@ -61,14 +61,14 @@
   \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
 
-\RequirePackage{xifthen}
+\usepackage{xifthen}
 
 % make all cross-references clickable
 \usepackage[hidelinks,unicode]{hyperref}
 
 \usepackage[titletoc]{appendix}
 
-\renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
 
 \usepackage[                           % clean thesis style
 	figuresep=colon,
@@ -98,16 +98,16 @@
 \usepackage[cal=boondoxo]{mathalfa} % mathcal
 
 \usepackage{microtype} % improve typography
-\usepackage{anyfontsize} % allow any size of font
+%\usepackage{anyfontsize} % allow any size of font
 \usepackage{amsmath,amsfonts,amsbsy}
 \usepackage{mathtools}
 \usepackage[style]{abstract} % abstract styling
-%\usepackage{parskip}
 
 \usepackage{multicol}
 \usepackage{etoolbox}
 \usepackage{parskip} % adjustable line spacing
 \usepackage{float}
+% units for nice formatting of numbers
 \usepackage[exponent-product=\cdot]{siunitx}
 
 % from: https://gist.github.com/FelipeCortez/10729134
@@ -117,8 +117,10 @@
 \definecolor{redstrings}{rgb}{0.8, 0.15, 0.1}
 \definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
 \definecolor{subtlegray}{rgb}{0.98, 0.98, 0.98}
+
 \usepackage{lstautogobble}
 \usepackage{listings}
+
 \lstset{
     autogobble,    
     columns=fullflexible,
@@ -273,6 +275,7 @@
             \@date\\
             \@city
         \end{center}
+    	\normalsize
     \end{titlepage}
 
     \setcounter{footnote}{0}%
@@ -374,13 +377,10 @@
 
 % allow highlighting of text for todo notes
 \usepackage{soul}
-\newcommand{\todo}[1]{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}
+\newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
-
-% units for nice formatting of numbers
-\usepackage{siunitx}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}

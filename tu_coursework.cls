@@ -24,51 +24,42 @@
 \ProcessOptions
 
 \LoadClass[
-    % For some stupid reason the next line causes a warning. It's the default value anyway, so it stays commented.
-	paper=A4,					% paper size --> A4 is default in Bulgaria
+	%paper=A4,					% paper size --> A4 is default in Bulgaria
 	twoside=true,				% onesite or twoside printing
 	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=false,        % do not display a prefix for chapters
     appendixprefix=true,        % but display a prefix for appendix chapter
-	fontsize=11pt,				% font size
+	fontsize=10pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
 	titlepage=true,				% own page for each title page
 	captions=belowtable,		% display table captions below the float env
 	draft=false,				% value for draft version
-	DIV=8,                      % suppress DIV warnings, overwritten by cleanthesis.sty
+	DIV=9,                      % suppress DIV warnings, overwritten by cleanthesis.sty
+	%hangsection=false,
+	%hangsubsection=false
 ]{scrreprt}
 
 % Monospace font is Fira Mono Sans
 % the body font used is FBB (Bembo)
 \usepackage{iftex}
 \ifPDFTeX
-  \usepackage{fbb}
-  \usepackage{FiraMono}
-  \usepackage{FiraSans}
-  \usepackage{textcomp}
-  \usepackage[utf8]{inputenc}
-  \usepackage[T2A,T1]{fontenc}
-  \usepackage[main=bulgarian,english]{babel}
+	\usepackage{fbb}
+	\usepackage{FiraMono}
+	\usepackage{FiraSans}
+	\usepackage[utf8]{inputenc}
+	\usepackage[T2A,T1]{fontenc}
+	\usepackage[main=bulgarian,english]{babel}
 \else
-  % make sure the fonts are actually set
-  \usepackage{fontspec}
-  \usepackage{polyglossia}
-  \setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
-  \setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
-  \setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
+	% make sure the fonts are actually set
+	\usepackage{fontspec}
+	\usepackage{polyglossia}
+	\setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
+	\setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
+	\setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
-
-\usepackage{xifthen}
-
-% make all cross-references clickable
-\usepackage[hidelinks,unicode]{hyperref}
-
-\usepackage[titletoc]{appendix}
-
-\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
 
 \usepackage[                           % clean thesis style
 	figuresep=colon,
@@ -86,29 +77,36 @@
 	bibsorting=nty,
 ]{cleanthesis}
 
-\textheight=24cm
-
+\usepackage{scrhack}								% fixes a KOMA-Script related warning
+\usepackage{xifthen}
+\usepackage[titletoc]{appendix}
 \usepackage{pdfpages}
 \usepackage{placeins}
 \usepackage{multirow}
 \usepackage{makecell}
 \usepackage{csvsimple}
-
-\usepackage[libertine,bigdelims,vvarbb]{newtxmath} % bb from STIX
-\usepackage[cal=boondoxo]{mathalfa} % mathcal
-
-\usepackage{microtype} % improve typography
-%\usepackage{anyfontsize} % allow any size of font
+\usepackage[libertine,bigdelims,vvarbb]{newtxmath}	% bb from STIX
+\usepackage[cal=boondoxo]{mathalfa}					% mathcal
+%\usepackage{anyfontsize}							% allow any size of font
 \usepackage{amsmath,amsfonts,amsbsy}
 \usepackage{mathtools}
-\usepackage[style]{abstract} % abstract styling
+\usepackage[style]{abstract}						% abstract styling
+\usepackage{etoolbox}
+%\usepackage{parskip}								% adjustable line spacing
+\usepackage{float}
+\usepackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
+\usepackage{numprint}								% nice number printing
+%\usepackage{sectsty}								% allow section styling
+\usepackage{subcaption}								% allow subfloats
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{soul}
+\usepackage{lstautogobble}
 
 \usepackage{multicol}
-\usepackage{etoolbox}
-\usepackage{parskip} % adjustable line spacing
-\usepackage{float}
-% units for nice formatting of numbers
-\usepackage[exponent-product=\cdot]{siunitx}
+\setlength{\columnsep}{1.5pc}
+
+\usepackage{listings}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -117,9 +115,6 @@
 \definecolor{redstrings}{rgb}{0.8, 0.15, 0.1}
 \definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
 \definecolor{subtlegray}{rgb}{0.98, 0.98, 0.98}
-
-\usepackage{lstautogobble}
-\usepackage{listings}
 
 \lstset{
     autogobble,    
@@ -145,16 +140,32 @@
     captionpos=b
 }
 \renewcommand{\lstlistingname}{Програмен код}
-%% ---
 
-% nice number printing
-\usepackage{numprint}
+% Algorithm typesetting package
+\usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
+\SetAlFnt{\sffamily \small}
 
-% allow PDF graphics
-\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{arrow_no_head} = [thick]
 
-% allow section styling
-%\usepackage{sectsty}
+%\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
+
+\usepackage[hidelinks,unicode]{hyperref}			% make all cross-references clickable
+\hypersetup{					    % настройки на пакета hyperref
+	plainpages=false,			    %
+	pdfborder={0 0 0},			    %
+	breaklinks=true,			    % разрешаване на нови редове в линкове
+	bookmarksnumbered=true,		    %
+	bookmarksopen=true			    %
+}
+
+\textheight=24cm
 
 \newcommand{\secfont}{\normalfont\sffamily}
 % % style the sections and the abstract
@@ -182,9 +193,6 @@
 \newcommand{\@city}{}
 \newcommand{\city}[1]{\renewcommand{\@city}{#1}}
 
-% allow subfloats
-\usepackage{subcaption}
-
 % define the title page
 \renewcommand\maketitle
 {
@@ -204,7 +212,7 @@
         
         \color{UniBlue}
         \begin{center}
-            \huge\sffamily\@faculty\\ 
+            \LARGE\sffamily\@faculty
         \end{center}
 
         % title and author
@@ -214,12 +222,12 @@
         \begin{center}
             \noindent
             \fontsize{35}{35}
-            \scshape\@doctype\par
+            \upshape\@doctype\par
             \normalsize
             \Large
             на тема\par
             \noindent
-            \Huge\scshape\@title\par
+            \Huge\upshape\@title\par
         \end{center}
         \vfill
         
@@ -248,11 +256,13 @@
                     \ifthenelse{\equal{\@supervisorchair}{}}{}
                     {
                         катедра 
-                        \@supervisorchair}\\
+                        \@supervisorchair}
                     }
-            }\\
+            }
+        
             \ifthenelse{\equal{\@reviewer}{}}{}
             {
+            	\noindent
                 Рецензент:\\
                 {
                     \large
@@ -262,10 +272,11 @@
                         \ifthenelse{\equal{\@reviewerchair}{}}{}
                         {
                             катедра 
-                            \@reviewerchair}\\
+                            \@reviewerchair}
                         }
                 }
             }
+        
             \vfill
         \end{multicols}
         
@@ -308,8 +319,6 @@
     \global\let\and\relax
 }
 
-\usepackage{booktabs}
-
 % Educational consent form
 \newcommand{\educationalconsent}{
     \ifdefined\consentname
@@ -336,7 +345,6 @@
 }
 
 % highlight boxes
-\usepackage{tcolorbox}
 \newenvironment{highlight}
 {\begin{tcolorbox}[notitle,boxrule=0pt,colback=green!10,colframe=green!10]}
 {
@@ -355,10 +363,6 @@
 % use (a) in figures
 \captionsetup{subrefformat=parens}
 
-% Algorithm typesetting package
-\usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
-\SetAlFnt{\sffamily \small}
-
 % switch to roman numeral for frontmatter
 \pagenumbering{Roman}
 
@@ -376,21 +380,10 @@
       \itemsep=\parsep}
 
 % allow highlighting of text for todo notes
-\usepackage{soul}
 \newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
-
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
-\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{arrow_no_head} = [thick]
-
 
 % Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
 \renewcommand{\appendix}
@@ -417,13 +410,7 @@
     \addcontentsline{toc}{chapter}{Приложения}%
 }
 
-\hypersetup{					    % настройки на пакета hyperref
-	plainpages=false,			    %
-	pdfborder={0 0 0},			    %
-	breaklinks=true,			    % разрешаване на нови редове в линкове
-	bookmarksnumbered=true,		    %
-	bookmarksopen=true			    %
-}
+\pdfminorversion=7
 
 % Превод на \autoref
 \addto\extrasbulgarian

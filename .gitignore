@@ -11,3 +11,5 @@
 .SRCINFO
 *.blg
 *.bbl
+*.fls
+*.fdb_latexmk

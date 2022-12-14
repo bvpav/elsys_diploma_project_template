@@ -6,6 +6,14 @@
 Повечето шрифтове, цветове, размери и т.н. са запазени от шаблоните, коитото служат за основа на този. Ако Вашите ръководител, рецензент или комисия имат строги изисквания към оформлението, е Ваша отговорност да ги удовлетворите.
 Основният проблем е, че ТУ-София изисква дипломните работи да се принтират едностранно, а този шаблон е предвиден за двустранен печат. Обаче аз (авторът на този шаблон) считам това изискване за необосновано и отказвам да го спазвам.
 
+Използвани пакети:
+texlive-core (latex, koma-script, babel, hyperref, graphics, pdfpages, pgf, amsmath, amsfonts, mathtools, xkeyval, xcolor, microtype, setspace, iftex, tools, etoolbox, float, listings, caption, booktabs, soul, lm, charter, fontspec, polyglossia)
+texlive-latexextra (csvsimple, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)
+texlive-fontsextra (fbb, fira, newtx, dejavu)
+texlive-science (siunitx, algorithm2e)
+texlive-pictures (circuitikz)
+texlive-bibtexextra (biblatex)
+
 Базиран на:
 
 UofG SoCS Level 4 Project LaTeX template by johnhw

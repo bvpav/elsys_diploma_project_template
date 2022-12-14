@@ -28,8 +28,8 @@
 	twoside=true,				% onesite or twoside printing
 	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
-	chapterprefix=false,        % do not display a prefix for chapters
-    appendixprefix=true,        % but display a prefix for appendix chapter
+	chapterprefix=false,		% do not display a prefix for chapters
+	appendixprefix=true,		% but display a prefix for appendix chapter
 	fontsize=10pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
@@ -37,31 +37,32 @@
 	titlepage=true,				% own page for each title page
 	captions=belowtable,		% display table captions below the float env
 	draft=false,				% value for draft version
-	DIV=9,                      % suppress DIV warnings, overwritten by cleanthesis.sty
+	DIV=9,					  % suppress DIV warnings, overwritten by cleanthesis.sty
 	%hangsection=false,
 	%hangsubsection=false
 ]{scrreprt}
 
 % Monospace font is Fira Mono Sans
 % the body font used is FBB (Bembo)
-\usepackage{iftex}
+\RequirePackage{iftex}
 \ifPDFTeX
-	\usepackage{fbb}
-	\usepackage{FiraMono}
-	\usepackage{FiraSans}
-	\usepackage[utf8]{inputenc}
-	\usepackage[T2A,T1]{fontenc}
-	\usepackage[main=bulgarian,english]{babel}
+	\RequirePackage{fbb}
+	\RequirePackage{FiraMono}
+	\RequirePackage{FiraSans}
+	\RequirePackage[utf8]{inputenc}
+	\RequirePackage[T2A,T1]{fontenc}
+	\RequirePackage[main=bulgarian,english]{babel}
+	\pdfminorversion=7
 \else
 	% make sure the fonts are actually set
-	\usepackage{fontspec}
-	\usepackage{polyglossia}
+	\RequirePackage{fontspec}
+	\RequirePackage{polyglossia}
 	\setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
 	\setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
 	\setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
 
-\usepackage[                           % clean thesis style
+\RequirePackage[						   % clean thesis style
 	figuresep=colon,
 	sansserif=true,
 	hangfigurecaption=false,
@@ -77,36 +78,35 @@
 	bibsorting=nty,
 ]{cleanthesis}
 
-\usepackage{scrhack}								% fixes a KOMA-Script related warning
-\usepackage{xifthen}
-\usepackage[titletoc]{appendix}
-\usepackage{pdfpages}
-\usepackage{placeins}
-\usepackage{multirow}
-\usepackage{makecell}
-\usepackage{csvsimple}
-\usepackage[libertine,bigdelims,vvarbb]{newtxmath}	% bb from STIX
-\usepackage[cal=boondoxo]{mathalfa}					% mathcal
-%\usepackage{anyfontsize}							% allow any size of font
-\usepackage{amsmath,amsfonts,amsbsy}
-\usepackage{mathtools}
-\usepackage[style]{abstract}						% abstract styling
-\usepackage{etoolbox}
-%\usepackage{parskip}								% adjustable line spacing
-\usepackage{float}
-\usepackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
-\usepackage{numprint}								% nice number printing
-%\usepackage{sectsty}								% allow section styling
-\usepackage{subcaption}								% allow subfloats
-\usepackage{booktabs}
-\usepackage{tcolorbox}
-\usepackage{soul}
-\usepackage{lstautogobble}
+\RequirePackage{scrhack}								% fixes a KOMA-Script related warning
+\RequirePackage{xifthen}
+\RequirePackage[titletoc]{appendix}
+\RequirePackage{pdfpages}
+\RequirePackage{placeins}
+\RequirePackage{multirow}
+\RequirePackage{makecell}
+\RequirePackage{csvsimple}
+\RequirePackage[libertine,bigdelims,vvarbb]{newtxmath}	% bb from STIX
+\RequirePackage[cal=boondoxo]{mathalpha}				% mathcal
+%\RequirePackage{anyfontsize}							% allow any size of font
+\RequirePackage{amsmath,amsfonts,amsbsy}
+\RequirePackage{mathtools}
+\RequirePackage[style]{abstract}						% abstract styling
+\RequirePackage{etoolbox}
+\RequirePackage{float}
+\RequirePackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
+\RequirePackage{numprint}								% nice number printing
+\RequirePackage{subcaption}								% allow subfloats
+\RequirePackage{booktabs}
+\RequirePackage{tcolorbox}
+\RequirePackage{soul}
+\RequirePackage{lstautogobble}
+\RequirePackage{circuitikz}
 
-\usepackage{multicol}
+\RequirePackage{multicol}
 \setlength{\columnsep}{1.5pc}
 
-\usepackage{listings}
+\RequirePackage{listings}
 
 % from: https://gist.github.com/FelipeCortez/10729134
 % set up listings for prettier output
@@ -117,35 +117,35 @@
 \definecolor{subtlegray}{rgb}{0.98, 0.98, 0.98}
 
 \lstset{
-    autogobble,    
-    columns=fullflexible,
-    showspaces=false,
-    showtabs=false,
-    breaklines=true,
-    showstringspaces=false,
-    breakatwhitespace=true,
-    escapeinside={(*@}{@*)},
-    rulecolor=\color{lightgray},
-    backgroundcolor=\color{subtlegray},
-    commentstyle=\color{greencomments},
-    keywordstyle=\color{bluekeywords},
-    stringstyle=\color{redstrings},
-    numbers=left,
-    numberstyle=\color{graynumbers},
-    basicstyle=\ttfamily\linespread{1.15}\footnotesize,
-    frame=tb,
-    framesep=12pt,
-    framexleftmargin=12pt,
-    tabsize=4,
-    captionpos=b
+	autogobble,	
+	columns=fullflexible,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+	rulecolor=\color{lightgray},
+	backgroundcolor=\color{subtlegray},
+	commentstyle=\color{greencomments},
+	keywordstyle=\color{bluekeywords},
+	stringstyle=\color{redstrings},
+	numbers=left,
+	numberstyle=\color{graynumbers},
+	basicstyle=\ttfamily\linespread{1.15}\footnotesize,
+	frame=tb,
+	framesep=12pt,
+	framexleftmargin=12pt,
+	tabsize=4,
+	captionpos=b
 }
 \renewcommand{\lstlistingname}{Програмен код}
 
 % Algorithm typesetting package
-\usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
+\RequirePackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
 \SetAlFnt{\sffamily \small}
 
-\usepackage{tikz}
+\RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
 \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
@@ -156,13 +156,13 @@
 
 %\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
 
-\usepackage[hidelinks,unicode]{hyperref}			% make all cross-references clickable
-\hypersetup{					    % настройки на пакета hyperref
-	plainpages=false,			    %
-	pdfborder={0 0 0},			    %
-	breaklinks=true,			    % разрешаване на нови редове в линкове
-	bookmarksnumbered=true,		    %
-	bookmarksopen=true			    %
+\RequirePackage[hidelinks,unicode]{hyperref}			% make all cross-references clickable
+\hypersetup{						% настройки на пакета hyperref
+	plainpages=false,				%
+	pdfborder={0 0 0},				%
+	breaklinks=true,				% разрешаване на нови редове в линкове
+	bookmarksnumbered=true,			%
+	bookmarksopen=true				%
 }
 
 \textheight=24cm
@@ -196,152 +196,152 @@
 % define the title page
 \renewcommand\maketitle
 {
-    \begin{titlepage}
-        \definecolor{UniBlue}{HTML}{00355F}
+	\begin{titlepage}
+		\definecolor{UniBlue}{HTML}{00355F}
 
-        %\let\footnotesize\small
-        \let\footnoterule\relax
-        \let\footnote \thanks
+		%\let\footnotesize\small
+		\let\footnoterule\relax
+		\let\footnote \thanks
 
-        % the logo, full page width
-        \vspace{1in}
-        \begin{figure}[h]
-            \includegraphics[width=\linewidth]{images/TU-logo_long.png}
-        \end{figure}
-        \vskip 0.5em
-        
-        \color{UniBlue}
-        \begin{center}
-            \LARGE\sffamily\@faculty
-        \end{center}
+		% the logo, full page width
+		\vspace{1in}
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{images/TU-logo_long.png}
+		\end{figure}
+		\vskip 0.5em
+		
+		\color{UniBlue}
+		\begin{center}
+			\LARGE\sffamily\@faculty
+		\end{center}
 
-        % title and author
-        \vspace{2cm}
-        \large
-        \vskip 8em%
-        \begin{center}
-            \noindent
-            \fontsize{35}{35}
-            \upshape\@doctype\par
-            \normalsize
-            \Large
-            на тема\par
-            \noindent
-            \Huge\upshape\@title\par
-        \end{center}
-        \vfill
-        
-        \begin{multicols}{2}
-            \noindent
-            Автор:\\
-            {
-                \large
-                \textbf{\@author}\\
-                \textbf
-                {
-                    \@fac, Група \@admgroup,\\
-                    ФК\textnumero\ \@facnumber\\
-                    специалност \@speciality
-                }
-            }
-            \vfill\null
-            \columnbreak
-            \noindent
-            Научен ръководител:\\
-            {
-                \large
-                \textbf
-                {
-                    \@supervisor\\
-                    \ifthenelse{\equal{\@supervisorchair}{}}{}
-                    {
-                        катедра 
-                        \@supervisorchair}
-                    }
-            }
-        
-            \ifthenelse{\equal{\@reviewer}{}}{}
-            {
-            	\noindent
-                Рецензент:\\
-                {
-                    \large
-                    \textbf
-                    {
-                        \@reviewer\\
-                        \ifthenelse{\equal{\@reviewerchair}{}}{}
-                        {
-                            катедра 
-                            \@reviewerchair}
-                        }
-                }
-            }
-        
-            \vfill
-        \end{multicols}
-        
-        \vfill
-        
-        \begin{center}
-            \@date\\
-            \@city
-        \end{center}
-    	\normalsize
-    \end{titlepage}
+		% title and author
+		\vspace{2cm}
+		\large
+		\vskip 8em%
+		\begin{center}
+			\noindent
+			\fontsize{35}{35}
+			\upshape\@doctype\par
+			\normalsize
+			\Large
+			на тема\par
+			\noindent
+			\Huge\upshape\@title\par
+		\end{center}
+		\vfill
+		
+		\begin{multicols}{2}
+			\noindent
+			Автор:\\
+			{
+				\large
+				\textbf{\@author}\\
+				\textbf
+				{
+					\@fac, Група \@admgroup,\\
+					ФК\textnumero\ \@facnumber\\
+					специалност \@speciality
+				}
+			}
+			\vfill\null
+			\columnbreak
+			\noindent
+			Научен ръководител:\\
+			{
+				\large
+				\textbf
+				{
+					\@supervisor\\
+					\ifthenelse{\equal{\@supervisorchair}{}}{}
+					{
+						катедра 
+						\@supervisorchair}
+					}
+			}
+		
+			\ifthenelse{\equal{\@reviewer}{}}{}
+			{
+				\noindent
+				Рецензент:\\
+				{
+					\large
+					\textbf
+					{
+						\@reviewer\\
+						\ifthenelse{\equal{\@reviewerchair}{}}{}
+						{
+							катедра 
+							\@reviewerchair}
+						}
+				}
+			}
+		
+			\vfill
+		\end{multicols}
+		
+		\vfill
+		
+		\begin{center}
+			\@date\\
+			\@city
+		\end{center}
+		\normalsize
+	\end{titlepage}
 
-    \setcounter{footnote}{0}%
-    \global\let\thanks\relax
-    \global\let\maketitle\relax
-    \global\let\@thanks\@empty
-    \global\let\@author\@empty
-    \global\let\@supervisor\@empty
-    \global\let\@reviewer\@empty
-    \global\let\@admgroup\@empty
-    \global\let\@faculty\@empty
-    \global\let\@fac\@empty
-    \global\let\@facnumber\@empty
-    \global\let\@date\@empty
-    \global\let\@city\@empty
-    \global\let\@consentname\@empty
-    \global\let\@consentdate\@empty
+	\setcounter{footnote}{0}%
+	\global\let\thanks\relax
+	\global\let\maketitle\relax
+	\global\let\@thanks\@empty
+	\global\let\@author\@empty
+	\global\let\@supervisor\@empty
+	\global\let\@reviewer\@empty
+	\global\let\@admgroup\@empty
+	\global\let\@faculty\@empty
+	\global\let\@fac\@empty
+	\global\let\@facnumber\@empty
+	\global\let\@date\@empty
+	\global\let\@city\@empty
+	\global\let\@consentname\@empty
+	\global\let\@consentdate\@empty
 
-    \global\let\@title\@empty
-    \global\let\title\relax
-    \global\let\author\relax
-    \global\let\supervisor\relax
-    \global\let\reviewer\relax
-    \global\let\admgroup\relax
-    \global\let\faculty\relax
-    \global\let\fac\relax
-    \global\let\facnumber\relax
-    \global\let\date\relax
-    \global\let\city\relax
-    \global\let\and\relax
+	\global\let\@title\@empty
+	\global\let\title\relax
+	\global\let\author\relax
+	\global\let\supervisor\relax
+	\global\let\reviewer\relax
+	\global\let\admgroup\relax
+	\global\let\faculty\relax
+	\global\let\fac\relax
+	\global\let\facnumber\relax
+	\global\let\date\relax
+	\global\let\city\relax
+	\global\let\and\relax
 }
 
 % Educational consent form
 \newcommand{\educationalconsent}{
-    \ifdefined\consentname
-          \newpage
-          \chapter*{Education Use Consent}
+	\ifdefined\consentname
+		  \newpage
+		  \chapter*{Education Use Consent}
 
-          I hereby grant my permission for this project to be stored, distributed and shown to other
-          University of Glasgow students and staff for educational purposes. 
-          \textbf{Please note that you are under no obligation to sign 
-          this declaration, but doing so would help future students.}
+		  I hereby grant my permission for this project to be stored, distributed and shown to other
+		  University of Glasgow students and staff for educational purposes. 
+		  \textbf{Please note that you are under no obligation to sign 
+		  this declaration, but doing so would help future students.}
 
-          \begin{tabular}{@{}llll}
-                &                     &            &                     \\
-                &                     &            &                     \\
-          Signature: & \consentname & Date: & \consentdate \\
-                &                     &            &                     \\
-                &                     &            &                     \\
-          \end{tabular}
-    \else
-    \newpage
-        \chapter*{Education Use Consent}
-        Consent for educational reuse withheld. Do not distribute.
-    \fi
+		  \begin{tabular}{@{}llll}
+				&					 &			&					 \\
+				&					 &			&					 \\
+		  Signature: & \consentname & Date: & \consentdate \\
+				&					 &			&					 \\
+				&					 &			&					 \\
+		  \end{tabular}
+	\else
+	\newpage
+		\chapter*{Education Use Consent}
+		Consent for educational reuse withheld. Do not distribute.
+	\fi
 }
 
 % highlight boxes
@@ -368,16 +368,16 @@
 
 % fix itemise so it looks reasonable
 \renewcommand{\@listI}{%
-      \leftmargin=25pt
-      \rightmargin=0pt
-      \labelsep=5pt
-      \labelwidth=20pt
-      \itemindent=0pt
-      \listparindent=0pt
-      \topsep=0pt plus 2pt minus 4pt
-      \partopsep=0pt plus 1pt minus 1pt
-      \parsep=1pt plus 1pt
-      \itemsep=\parsep}
+	  \leftmargin=25pt
+	  \rightmargin=0pt
+	  \labelsep=5pt
+	  \labelwidth=20pt
+	  \itemindent=0pt
+	  \listparindent=0pt
+	  \topsep=0pt plus 2pt minus 4pt
+	  \partopsep=0pt plus 1pt minus 1pt
+	  \parsep=1pt plus 1pt
+	  \itemsep=\parsep}
 
 % allow highlighting of text for todo notes
 \newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
@@ -388,29 +388,27 @@
 % Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
 \renewcommand{\appendix}
 {%
-    \setcounter{chapter}{0}
-    \setcounter{section}{0}
-    \renewcommand\chapapp{\appendixname}
-    \renewcommand\thechapter{\Alph{chapter}}
-    \renewcommand\theHchapter{\Alph{chapter}}
-    \renewcommand{\chaptermark}[1]{%
-        \markboth{%
-            \ctfontfootertext
-            % use \@chapapp instead of \chaptername to avoid
-            % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
-    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
-    		\hspace{.25cm}%
-            %\protect\begin{minipage}[t]{.65\textwidth}%
-                ##1%
-            %\protect\end{minipage}%
-        }{}%
-    }
-    %\cleardoublepage
-    \clearpage
-    \addcontentsline{toc}{chapter}{Приложения}%
+	\setcounter{chapter}{0}
+	\setcounter{section}{0}
+	\renewcommand\chapapp{\appendixname}
+	\renewcommand\thechapter{\Alph{chapter}}
+	\renewcommand\theHchapter{\Alph{chapter}}
+	\renewcommand{\chaptermark}[1]{%
+		\markboth{%
+			\ctfontfootertext
+			% use \@chapapp instead of \chaptername to avoid
+			% 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+			{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+			\hspace{.25cm}%
+			%\protect\begin{minipage}[t]{.65\textwidth}%
+				##1%
+			%\protect\end{minipage}%
+		}{}%
+	}
+	%\cleardoublepage
+	\clearpage
+	\addcontentsline{toc}{chapter}{Приложения}%
 }
-
-\pdfminorversion=7
 
 % Превод на \autoref
 \addto\extrasbulgarian

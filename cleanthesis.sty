@@ -225,7 +225,13 @@
 % **************************************************
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
-\RequirePackage[T2A,T1]{fontenc}	% font types and character verification
+\RequirePackage{iftex}
+\ifPDFTeX
+	\RequirePackage[T2A,T1]{fontenc}	% font types and character verification
+	\RequirePackage{textcomp}						% different symbols
+\else
+	\RequirePackage{fontspec}
+\fi
 
 \ifct@cthesis@sansserif
 	% Using sans-serif fonts
@@ -256,7 +262,6 @@
 %\RequirePackage{fancyhdr}						% for header and footer modifications
 \RequirePackage{enumitem}						% for simple list modifications
 \RequirePackage{blindtext}						% package for blind text
-\RequirePackage{textcomp}						% different symbols
 %\RequirePackage{hyperref} 						% interactive link inside the document
 \RequirePackage{calc}
 \RequirePackage[automark]{scrlayer-scrpage}
@@ -280,12 +285,12 @@
 % **************************************************
 % Page construction
 % **************************************************
-\KOMAoption{headinclude}{false}     % include header in body?
-\KOMAoption{footinclude}{false}     % include footer in body?
-\KOMAoption{footlines}{2.1}         % number of foot lines
-\KOMAoption{mpinclude}{false}       % include marginpar in body?
-\KOMAoption{BCOR}{12mm}             % binding correction
-\KOMAoption{DIV}{15}                % number of page divs (divider)
+\KOMAoption{headinclude}{false}	 % include header in body?
+\KOMAoption{footinclude}{false}	 % include footer in body?
+\KOMAoption{footlines}{2.1}		 % number of foot lines
+\KOMAoption{mpinclude}{false}	   % include marginpar in body?
+\KOMAoption{BCOR}{12mm}			 % binding correction
+\KOMAoption{DIV}{15}				% number of page divs (divider)
 %
 %
 \RequirePackage[					% advanced quotes
@@ -301,7 +306,7 @@
 	\RequirePackage[					% use biblatex for bibliography
 		backend=\cthesis@bibsys,		% 	- use biber backend (bibtex replacement) or bibtex
 		style=\cthesis@bibstyle,		% 	- use alphabetic (or numeric) bib style
-		dashed=false,                   %   - do not replace repeating author lists with dashes
+		dashed=false,				   %   - do not replace repeating author lists with dashes
 		natbib=true,					% 	- allow natbib commands
 		hyperref=true,					% 	- activate hyperref support
 		backref=true,					% 	- activate backrefs
@@ -319,16 +324,16 @@
 	]{biblatex}
 	\addbibresource{\cthesis@bibfile}
 	\DefineBibliographyStrings{bulgarian}
-    {
-      backrefpage = {цитирано на стр.},     % originally "cited on page"
-      backrefpages = {цитирано на стр.},    % originally "cited on pages"
-      andothers = {и колектив},             % originally "et al."
-    }
-    \defbibheading{bibliography_bg}[\bibname]
-    {
-        \chapter*{#1}%
-        \markboth{#1}{#1}
-    }
+	{
+	  backrefpage = {цитирано на стр.},	 % originally "cited on page"
+	  backrefpages = {цитирано на стр.},	% originally "cited on pages"
+	  andothers = {и колектив},			 % originally "et al."
+	}
+	\defbibheading{bibliography_bg}[\bibname]
+	{
+		\chapter*{#1}%
+		\markboth{#1}{#1}
+	}
 \fi
 
 % **************************************************
@@ -412,64 +417,64 @@
 % Header and Footer
 % **************************************************
 
-\automark[section]{chapter}         % automatically marks sections as rightmark
-                                    % and chapters as leftmark
-\setlength{\footheight}{120pt}      % avoids scrlayer-scrpage warning:
-                                    % footheight to low warning
-\setlength{\footskip}{150pt}        % BAD HACK that moves the foot downwards
+\automark[section]{chapter}		 % automatically marks sections as rightmark
+									% and chapters as leftmark
+\setlength{\footheight}{120pt}	  % avoids scrlayer-scrpage warning:
+									% footheight to low warning
+\setlength{\footskip}{150pt}		% BAD HACK that moves the foot downwards
 \KOMAoption{footwidth}{foot:53pt}   % BAD HACK that moves the foot towards
-                                    % the outer border
-\setkomafont{pagefoot}{\ctfontfootertext}           % font for footer
+									% the outer border
+\setkomafont{pagefoot}{\ctfontfootertext}		   % font for footer
 \setkomafont{pagenumber}{\ctfontfooterpagenumber}   % font for page numbers
 
 %% Redefinition of the chaptermark (used for footer mark on even (left) pages)
 \renewcommand{\chaptermark}[1]{%
-    \markboth{%
-        \ctfontfootertext
-        % use \@chapapp instead of \chaptername to avoid
-        % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+	\markboth{%
+		\ctfontfootertext
+		% use \@chapapp instead of \chaptername to avoid
+		% 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
 		{\color{ctcolorfootermark}\textbf{\@chapapp\ \thechapter}}%
-        \hspace{.25cm}%
-        \protect\begin{minipage}[t]{.65\textwidth}%
-            #1%
-        \protect\end{minipage}%
-    }{}%
+		\hspace{.25cm}%
+		\protect\begin{minipage}[t]{.65\textwidth}%
+			#1%
+		\protect\end{minipage}%
+	}{}%
 }
 
 %% Redefinition of the sectionmark (used for footer mark on odd (right) pages)
 \renewcommand{\sectionmark}[1]{%
-    \markright{%
-        \ctfontfootertext
-        \protect\raggedleft%
-        {\color{ctcolorfootermark}\textbf{\thesection}}%
-        \hspace{.25cm}%
-        \protect\begin{minipage}[t]{\minof{\widthof{#1}}{.7\textwidth}}%
-            #1%
-        \protect\end{minipage}%
-    }%
+	\markright{%
+		\ctfontfootertext
+		\protect\raggedleft%
+		{\color{ctcolorfootermark}\textbf{\thesection}}%
+		\hspace{.25cm}%
+		\protect\begin{minipage}[t]{\minof{\widthof{#1}}{.7\textwidth}}%
+			#1%
+		\protect\end{minipage}%
+	}%
 }
 
 %% Vertical line in the footer (between page number and mark)
 \newcommand{\ctfooterline}{%
-    \color{ctcolorfooterline}\rule[-90pt]{1.25pt}{100pt}%
+	\color{ctcolorfooterline}\rule[-90pt]{1.25pt}{100pt}%
 }
 
 %% Page number for odd (right) pages
 \newcommand{\ctfooterrightpagenumber}{%
-    \ctfooterline%
-    \hspace*{10pt}%
-    \begin{minipage}[b]{1.5cm}%
-        \pagemark\ %
-    \end{minipage}%
+	\ctfooterline%
+	\hspace*{10pt}%
+	\begin{minipage}[b]{1.5cm}%
+		\pagemark\ %
+	\end{minipage}%
 }
 
 %% Page number for even (left) pages
 \newcommand{\ctfooterleftpagenumber}{%
-    \begin{minipage}[b]{1.5cm}%
-        \raggedleft\pagemark%
-    \end{minipage}%
-    \hspace*{10pt}%
-    \ctfooterline%
+	\begin{minipage}[b]{1.5cm}%
+		\raggedleft\pagemark%
+	\end{minipage}%
+	\hspace*{10pt}%
+	\ctfooterline%
 }
 
 %% Defines the content for header and footer
@@ -480,22 +485,22 @@
 \cohead{}
 \rohead{}
 \lefoot[%   > plain
-    \ctfooterleftpagenumber%
-]{%         > srcheadings
-    \ctfooterleftpagenumber%
-    \hspace*{0.75cm}%
-    \headmark%
+	\ctfooterleftpagenumber%
+]{%		 > srcheadings
+	\ctfooterleftpagenumber%
+	\hspace*{0.75cm}%
+	\headmark%
 }
 \cefoot{}
 \refoot{}
 \lofoot{}
 \cofoot{}
 \rofoot[%   > plain
-    \ctfooterrightpagenumber%
-]{%         > srcheadings
-    \headmark%
-    \hspace*{0.75cm}%
-    \ctfooterrightpagenumber%
+	\ctfooterrightpagenumber%
+]{%		 > srcheadings
+	\headmark%
+	\hspace*{0.75cm}%
+	\ctfooterrightpagenumber%
 }
 
 
@@ -519,12 +524,12 @@
 \newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\customfont\small\bfseries}
 
 \newcommand{\ctfontfooterpagenumber}{%
-    \color{ctcolorfooterpage}%
-    \normalfont\normalsize\bfseries \customfont%
+	\color{ctcolorfooterpage}%
+	\normalfont\normalsize\bfseries \customfont%
 }
 \newcommand{\ctfontfootertext}{%
-    \color{ctcolorfootertitle}%
-    \normalfont \customfont%
+	\color{ctcolorfootertitle}%
+	\normalfont \customfont%
 }
 %
 % headings
@@ -546,7 +551,7 @@
 % **************************************************
 %
 % -- modifications regarding sectioning (structural) commands,
-%    i.e. \part, \chapter, \section, \subsection, \subsubsection, \paragraph
+%	i.e. \part, \chapter, \section, \subsection, \subsubsection, \paragraph
 %
 % ---------------------------
 % > formats: \part
@@ -555,10 +560,10 @@
 \renewcommand*{\raggedpart}{\raggedleft}
 \renewcommand*\partheadmidvskip{\par\vspace*{3em}}
 \renewcommand*{\partformat}{%
-    \usekomafont{part}%
-    \thesispartlabelfont%
-    \partname\ \thepart\quad%
-    {\color{ctcolorpartline}\hspace*{-200pt}\rule[0pt]{600pt}{2pt}}%
+	\usekomafont{part}%
+	\thesispartlabelfont%
+	\partname\ \thepart\quad%
+	{\color{ctcolorpartline}\hspace*{-200pt}\rule[0pt]{600pt}{2pt}}%
 }
 %
 % ---------------------------
@@ -567,65 +572,65 @@
 \renewcommand*\chapterheadstartvskip{\vspace*{-11em}}
 \renewcommand*\chapterheadendvskip{\vspace*{2.5\baselineskip}}
 \renewcommand*{\chapterformat}{%
-    \ctchapternumber{\thechapter}%
+	\ctchapternumber{\thechapter}%
 }
 \renewcommand{\chapterlinesformat}[3]{%
-    \ctchaptertitle{#3}%
-    #2%
+	\ctchaptertitle{#3}%
+	#2%
 }
 %\renewcommand{\chapterlineswithprefixformat}[3]{%
-%    \ctchaptertitle{\@chapapp\ \thechapter: #3}%
-%    #2%
+%	\ctchaptertitle{\@chapapp\ \thechapter: #3}%
+%	#2%
 %}
 \newcommand{\ctchapternumber}[1]{%
-    \usekomafont{chapter}%
-    \begin{minipage}[t]{0.3\textwidth}%
-        \raggedleft{%
-            {\color{ctcolorchapterline}\rule[-5pt]{2pt}{5cm}}%
-            \quad%
-            {\color{ctcolorchapternum}\fontsize{60}{60}\selectfont#1}%
-        }%
-    \end{minipage}%
+	\usekomafont{chapter}%
+	\begin{minipage}[t]{0.3\textwidth}%
+		\raggedleft{%
+			{\color{ctcolorchapterline}\rule[-5pt]{2pt}{5cm}}%
+			\quad%
+			{\color{ctcolorchapternum}\fontsize{60}{60}\selectfont#1}%
+		}%
+	\end{minipage}%
 }
 \newcommand{\ctchaptertitle}[1]{%
-    \usekomafont{chapter}%
-    \begin{minipage}[t]{0.7\textwidth}%
-        \vspace*{5.85em}%
-        \raggedright%
-        #1%
-    \end{minipage}%
+	\usekomafont{chapter}%
+	\begin{minipage}[t]{0.7\textwidth}%
+		\vspace*{5.85em}%
+		\raggedright%
+		#1%
+	\end{minipage}%
 }
 %
 % ---------------------------
 % > formats: \section
 % ---------------------------
 \ifct@cthesis@hangsection
-    \renewcommand*{\sectionformat}{%
-        \usekomafont{section}%
-        %\makebox[0pt][r]{\color{ctcolorblack}\thesection\hspace*{10pt}}%
-        \color{ctcolorblack}\thesection\hspace*{10pt}%
-    }
+	\renewcommand*{\sectionformat}{%
+		\usekomafont{section}%
+		%\makebox[0pt][r]{\color{ctcolorblack}\thesection\hspace*{10pt}}%
+		\color{ctcolorblack}\thesection\hspace*{10pt}%
+	}
 \else
-    \renewcommand*{\sectionformat}{%
-        \usekomafont{section}%
-        {\color{ctcolorblack}\thesection\hspace*{10pt}}%
-    }
+	\renewcommand*{\sectionformat}{%
+		\usekomafont{section}%
+		{\color{ctcolorblack}\thesection\hspace*{10pt}}%
+	}
 \fi
 %
 % ---------------------------
 % > formats: \subsection
 % ---------------------------
 \ifct@cthesis@hangsubsection
-    \renewcommand*{\subsectionformat}{%
-        \usekomafont{subsection}%
-        %\makebox[0pt][r]{\color{ctcolorblack}\thesubsection\hspace*{10pt}}%
-        \color{ctcolorblack}\thesubsection\hspace*{10pt}%
-    }
+	\renewcommand*{\subsectionformat}{%
+		\usekomafont{subsection}%
+		%\makebox[0pt][r]{\color{ctcolorblack}\thesubsection\hspace*{10pt}}%
+		\color{ctcolorblack}\thesubsection\hspace*{10pt}%
+	}
 \else
-    \renewcommand*{\subsectionformat}{%
-        \usekomafont{subsection}%
-        {\color{ctcolorblack}\thesubsection\hspace*{10pt}}%
-    }
+	\renewcommand*{\subsectionformat}{%
+		\usekomafont{subsection}%
+		{\color{ctcolorblack}\thesubsection\hspace*{10pt}}%
+	}
 \fi
 %
 %
@@ -634,8 +639,8 @@
 % **************************************************
 %
 % -- modifications regarding the table of contents,
-%    the list of figures, list of tables,
-%    and list of listings
+%	the list of figures, list of tables,
+%	and list of listings
 %
 % > removes indention for lists of floating environments (e.g., lof and lot)
 \KOMAoption{listof}{flat}
@@ -660,11 +665,11 @@
 				\begin{flushleft}
 					{\hugequote}\textit{#1}
 				\end{flushleft}
-	    		\begin{flushright}
-    				--- \textbf{#2} \\
-    				#3
-		    	\end{flushright}
-		    \end{minipage}%
+				\begin{flushright}
+					--- \textbf{#2} \\
+					#3
+				\end{flushright}
+			\end{minipage}%
 		\end{flushright}
 	\end{minipage}%
 	\bigskip

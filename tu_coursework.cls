@@ -17,14 +17,13 @@
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
-2021/11/03 Minor improvements%
+2021/11/03 and 2022/12/15 Various improvements%
 ]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
 \ProcessOptions
 
 \LoadClass[
-	%paper=A4,					% paper size --> A4 is default in Bulgaria
 	twoside=true,				% onesite or twoside printing
 	open=any,					% doublepage cleaning ends up right side
 	parskip=half,				% spacing value / method for paragraphs
@@ -37,18 +36,13 @@
 	titlepage=true,				% own page for each title page
 	captions=belowtable,		% display table captions below the float env
 	draft=false,				% value for draft version
-	DIV=9,					  % suppress DIV warnings, overwritten by cleanthesis.sty
-	%hangsection=false,
-	%hangsubsection=false
+	DIV=9,						% suppress DIV warnings, overwritten by cleanthesis.sty
 ]{scrreprt}
 
-% Monospace font is Fira Mono Sans
-% the body font used is FBB (Bembo)
+% Monospace font was Fira Mono Sans and the body font was FBB (Bembo).
+% Removed as cleanthesis overwrites them anyway.
 \RequirePackage{iftex}
 \ifPDFTeX
-	\RequirePackage{fbb}
-	\RequirePackage{FiraMono}
-	\RequirePackage{FiraSans}
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T2A,T1]{fontenc}
 	\RequirePackage[main=bulgarian,english]{babel}
@@ -57,12 +51,10 @@
 	% make sure the fonts are actually set
 	\RequirePackage{fontspec}
 	\RequirePackage{polyglossia}
-	\setromanfont[Path=./fonts/, BoldFont=fbb-Bold, UprightFont=fbb-Regular, ItalicFont=fbb-Italic, BoldItalicFont=fbb-BoldItalic]{fbb}
-	\setmonofont[Path=./fonts/, BoldFont=FiraMono-Bold, UprightFont=FiraMono-Regular]{FiraMono.ttf}
-	\setsansfont[Path=./fonts/, BoldFont=FiraSans-Bold, UprightFont=FiraSans-Regular, ItalicFont=FiraSans-Italic, BoldItalicFont=FiraSans-BoldItalic]{FiraSans.ttf}
 \fi
 
-\RequirePackage[						   % clean thesis style
+% cleanthesis style
+\RequirePackage[
 	figuresep=colon,
 	sansserif=true,
 	hangfigurecaption=false,
@@ -78,6 +70,7 @@
 	bibsorting=nty,
 ]{cleanthesis}
 
+% Load packages
 \RequirePackage{scrhack}								% fixes a KOMA-Script related warning
 \RequirePackage{xifthen}
 \RequirePackage[titletoc]{appendix}
@@ -88,7 +81,6 @@
 \RequirePackage{csvsimple}
 \RequirePackage[libertine,bigdelims,vvarbb]{newtxmath}	% bb from STIX
 \RequirePackage[cal=boondoxo]{mathalpha}				% mathcal
-%\RequirePackage{anyfontsize}							% allow any size of font
 \RequirePackage{amsmath,amsfonts,amsbsy}
 \RequirePackage{mathtools}
 \RequirePackage[style]{abstract}						% abstract styling
@@ -154,22 +146,22 @@
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \tikzstyle{arrow_no_head} = [thick]
 
-%\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
+% Footnote font size
+\renewcommand{\footnotesize}{\fontsize{9pt}{11pt}\selectfont}
 
-\RequirePackage[hidelinks,unicode]{hyperref}			% make all cross-references clickable
-\hypersetup{						% настройки на пакета hyperref
+% make all cross-references clickable
+\RequirePackage[hidelinks,unicode]{hyperref}
+\hypersetup{						% hyperref settings
 	plainpages=false,				%
 	pdfborder={0 0 0},				%
-	breaklinks=true,				% разрешаване на нови редове в линкове
+	breaklinks=true,				% allow newlines in links
 	bookmarksnumbered=true,			%
 	bookmarksopen=true				%
 }
 
 \textheight=24cm
 
-\newcommand{\secfont}{\normalfont\sffamily}
-% % style the sections and the abstract
-%\allsectionsfont{\secfont}
+% Metadata
 \newcommand{\@supervisor}{}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
 \newcommand{\@supervisorchair}{}
@@ -193,7 +185,7 @@
 \newcommand{\@city}{}
 \newcommand{\city}[1]{\renewcommand{\@city}{#1}}
 
-% define the title page
+% Define the title page
 \renewcommand\maketitle
 {
 	\begin{titlepage}
@@ -344,29 +336,28 @@
 	\fi
 }
 
-% highlight boxes
+% Highlight boxes
 \newenvironment{highlight}
 {\begin{tcolorbox}[notitle,boxrule=0pt,colback=green!10,colframe=green!10]}
 {
 \end{tcolorbox}
 }
-
 \newenvironment{highlight_title}[1]
 {\begin{tcolorbox}[title=#1,boxrule=2pt,colback=green!10,colframe=green!20,coltitle=black,fonttitle=\bfseries]}
 {
 \end{tcolorbox}
 }
 
-% adjust margins
+% Adjust margins
 \setlength{\parindent}{12pt}
 
-% use (a) in figures
+% Use (a) in subfigures
 \captionsetup{subrefformat=parens}
 
-% switch to roman numeral for frontmatter
+% Switch to roman numeral for frontmatter
 \pagenumbering{Roman}
 
-% fix itemise so it looks reasonable
+% Fix itemise so it looks reasonable
 \renewcommand{\@listI}{%
 	  \leftmargin=25pt
 	  \rightmargin=0pt
@@ -379,13 +370,13 @@
 	  \parsep=1pt plus 1pt
 	  \itemsep=\parsep}
 
-% allow highlighting of text for todo notes
+% Allow highlighting of text for todo notes
 \newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
 
-% Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
+% Dirty fix for a formatting issues, caused by redefining \appendix in hyperref
 \renewcommand{\appendix}
 {%
 	\setcounter{chapter}{0}
@@ -410,7 +401,7 @@
 	\addcontentsline{toc}{chapter}{Приложения}%
 }
 
-% Превод на \autoref
+% \autoref translation
 \addto\extrasbulgarian
 {%
 	\def\figureautorefname{фигура}%
@@ -468,4 +459,5 @@
 	\def\theoremautorefname{теорема}%
 }
 
-%\DeclareMathSizes{9}{10.5}{7.5}{7.5}
+% Font size for mathematical expressions
+\DeclareMathSizes{10}{12}{10}{9}

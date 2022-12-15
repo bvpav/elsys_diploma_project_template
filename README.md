@@ -9,7 +9,7 @@
 Използвани пакети:
 texlive-core (latex, koma-script, babel, hyperref, graphics, pdfpages, pgf, amsmath, amsfonts, mathtools, xkeyval, xcolor, microtype, setspace, iftex, tools, etoolbox, float, listings, caption, booktabs, soul, lm, charter, fontspec, polyglossia)
 texlive-latexextra (csvsimple, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)
-texlive-fontsextra (fbb, fira, newtx, dejavu)
+texlive-fontsextra (newtx, dejavu)
 texlive-science (siunitx, algorithm2e)
 texlive-pictures (circuitikz)
 texlive-bibtexextra (biblatex)

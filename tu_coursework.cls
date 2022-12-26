@@ -86,7 +86,6 @@
 \RequirePackage[style]{abstract}						% abstract styling
 \RequirePackage{etoolbox}
 \RequirePackage{float}
-\RequirePackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
 \RequirePackage{numprint}								% nice number printing
 \RequirePackage{subcaption}								% allow subfloats
 \RequirePackage{booktabs}
@@ -94,6 +93,9 @@
 \RequirePackage{soul}
 \RequirePackage{lstautogobble}
 \RequirePackage{circuitikz}
+
+\RequirePackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
+\sisetup{mode = match}
 
 \RequirePackage{multicol}
 \setlength{\columnsep}{1.5pc}

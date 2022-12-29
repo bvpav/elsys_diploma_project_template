@@ -71,6 +71,7 @@
 ]{cleanthesis}
 
 % Load packages
+\RequirePackage{indentfirst}
 \RequirePackage{scrhack}								% fixes a KOMA-Script related warning
 \RequirePackage{xifthen}
 \RequirePackage[titletoc]{appendix}

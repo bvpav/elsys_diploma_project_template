@@ -304,16 +304,16 @@
 % **************************************************
 \ifct@cthesis@configurebiblatex
 	\RequirePackage[					% use biblatex for bibliography
-		backend=\cthesis@bibsys,		% 	- use biber backend (bibtex replacement) or bibtex
-		style=\cthesis@bibstyle,		% 	- use alphabetic (or numeric) bib style
-		dashed=false,				   %   - do not replace repeating author lists with dashes
-		natbib=true,					% 	- allow natbib commands
-		hyperref=true,					% 	- activate hyperref support
-		backref=true,					% 	- activate backrefs
-		isbn=false,						% 	- don't show isbn tags
-		url=false,						% 	- don't show url tags
-		doi=false,						% 	- don't show doi tags
-		urldate=long,					% 	- display type for dates
+		backend=\cthesis@bibsys,		%	- use biber backend (bibtex replacement) or bibtex
+		style=\cthesis@bibstyle,		%	- use alphabetic (or numeric) bib style
+		dashed=false,					%	- do not replace repeating author lists with dashes
+		natbib=true,					%	- allow natbib commands
+		hyperref=true,					%	- activate hyperref support
+		backref=true,					%	- activate backrefs
+		isbn=false,						%	- don't show isbn tags
+		url=false,						%	- don't show url tags
+		doi=true,						%	- show doi tags
+		urldate=long,					%	- display type for dates
 		maxnames=3,%
 		minnames=1,%
 		maxbibnames=5,%

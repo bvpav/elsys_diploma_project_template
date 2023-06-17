@@ -651,11 +651,10 @@
 % **************************************************
 %
 % Clean chapter quotations
-% TODO: Set a separate better font for the quotes
 \newcommand{\hugequote}{%
 	{\book\fontsize{75}{80}\selectfont%
-	\hspace*{-.475em}\color{ctcolorgraylight}%
-	\textit{\glqq}%
+	\hspace*{-.500em}\color{ctcolorgraylight}%
+	\usefont{T1}{DejaVuSerif-TLF}{m}{it}{\glqq}%
 	\vskip -.26em}%
 }
 \newcommand{\cleanchapterquote}[3]{%

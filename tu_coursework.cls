@@ -17,7 +17,6 @@
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
-2021/11/03 and 2022/12/15 Various improvements%
 ]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
@@ -80,7 +79,6 @@
 \RequirePackage{multirow}
 \RequirePackage{makecell}
 \RequirePackage{csvsimple}
-\RequirePackage[libertine,bigdelims,vvarbb]{newtxmath}	% bb from STIX
 \RequirePackage[cal=boondoxo]{mathalpha}				% mathcal
 \RequirePackage{amsmath,amsfonts,amsbsy}
 \RequirePackage{mathtools}

@@ -160,6 +160,9 @@
 	bookmarksopen=true				%
 }
 
+% Must be loaded after hyperref
+\RequirePackage[nameinlink,bulgarian]{cleveref_bg}
+
 \textheight=24cm
 
 % Metadata
@@ -400,64 +403,6 @@
 	%\cleardoublepage
 	\clearpage
 	\addcontentsline{toc}{chapter}{Приложения}%
-}
-
-% \autoref translation
-\addto\extrasbulgarian
-{%
-	\def\figureautorefname{фигура}%
-}
-\addto\extrasbulgarian
-{%
-	\def\tableautorefname{таблица}%
-}
-\addto\extrasbulgarian
-{%
-	\def\partautorefname{част}%
-}
-\addto\extrasbulgarian
-{%
-	\def\appendixautorefname{приложение}%
-}
-\addto\extrasbulgarian
-{%
-	\def\equationautorefname{уравнение}%
-}
-\addto\extrasbulgarian
-{%
-	\def\Itemautorefname{точка}%
-}
-\addto\extrasbulgarian
-{%
-	\def\chapterautorefname{глава}%
-}
-\addto\extrasbulgarian
-{%
-	\def\sectionautorefname{ред}%
-}
-\addto\extrasbulgarian
-{%
-	\def\subsectionautorefname{подточка}%
-}
-\addto\extrasbulgarian
-{%
-	\def\subsubsectionautorefname{подподточка}%
-}
-\addto\extrasbulgarian
-{%
-	\def\paragraphautorefname{параграф}%
-}
-\addto\extrasbulgarian
-{%
-	\def\Hfootnoteautorefname{бележка}%
-}
-\addto\extrasbulgarian
-{%
-	\def\AMSautorefname{уравнение}%
-}
-\addto\extrasbulgarian
-{%
-	\def\theoremautorefname{теорема}%
 }
 
 % Font size for mathematical expressions

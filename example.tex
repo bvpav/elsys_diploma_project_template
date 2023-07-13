@@ -1,11 +1,12 @@
 \chapter{Background}
+\label{kurche}
 What did other people do, and how is it relevant to what you want to do?
 \section{Guidance}
 \begin{itemize}    
     \item
-      Don't give a laundry list of references.
+      Don't give a laundry list of references. \Cref{kurche}
     \item
-      Tie everything you say to your problem.
+      Tie everything you say to your problem. \cref{kurche}
     \item
       Present an argument.
     \item Think critically; weigh up the contribution of the background and put it in context.    
@@ -50,9 +51,10 @@ You can't talk about everything. Cover the high level first, then cover importan
 These points apply to the whole dissertation, not just this chapter.
 
 \subsection{Figures}
-\emph{Always} refer to figures included, like Figure \ref{fig:relu}, in the body of the text. Include full, explanatory captions and make sure the figures look good on the page.
-You may include multiple figures in one float, as in Figure \ref{fig:synthetic}, using \texttt{subcaption}, which is enabled in the template.
+\emph{Always} refer to figures included, like Figure \cref{fig:relu}, in the body of the text. Include full, explanatory captions and make sure the figures look good on the page.
+You may include multiple figures in one float, as in Figure \cref{fig:synthetic}, using \texttt{subcaption}, which is enabled in the template.
 
+\Crefrange{fig:syn1}{fig:syn2} са грозни.
 
 % Figures are important. Use them well.
 \begin{figure}[htb]
@@ -106,7 +108,7 @@ For example, we might define:
 where $\hat{f}(\xi)$ is the Fourier transform of the time domain signal $f(x)$.
 
 \subsection{Algorithms}
-Algorithms can be set using \texttt{algorithm2e}, as in Algorithm \ref{alg:metropolis}.
+Algorithms can be set using \texttt{algorithm2e}, as in Algorithm \cref{alg:metropolis}.
 
 % NOTE: line ends are denoted by \; in algorithm2e
 \begin{algorithm}
@@ -140,7 +142,7 @@ specialised for normal proposal distributions $q(x^\prime|x) = \mathcal{N}(x, \s
 
 \subsection{Tables}
 
-If you need to include tables, like Table \ref{tab:operators}, use a tool like\\ https://www.tablesgenerator.com/ to generate the table as it is
+If you need to include tables, like Table \cref{tab:operators}, use a tool like\\ https://www.tablesgenerator.com/ to generate the table as it is
 extremely tedious otherwise. 
 
 \begin{table}
@@ -188,7 +190,7 @@ extremely tedious otherwise.
     \end{table}
 \subsection{Code}
 
-Avoid putting large blocks of code in the report (more than a page in one block, for example). Use syntax highlighting if possible, as in Listing \ref{lst:callahan}.
+Avoid putting large blocks of code in the report (more than a page in one block, for example). Use syntax highlighting if possible, as in Listing \cref{lst:callahan}.
 
 \begin{lstlisting}[language=python, float, caption={The algorithm for packing the $3\times 3$ outer-totalistic binary CA successor rule into a 
     $16\times 16\times 16\times 16$ 4 bit lookup table, running an equivalent, notionally 16-state $2\times 2$ CA.}, label=lst:callahan]
@@ -264,7 +266,7 @@ For example, these numbers will appear with two decimal places: \num{3.141592}, 
 If you use statistical procedures, make sure you understand the process you are using,
 and that you check the required assumptions hold in your case. 
 
-If you visualise, follow the basic rules, as illustrated in Figure \ref{fig:boxplot}:
+If you visualise, follow the basic rules, as illustrated in Figure \cref{fig:boxplot}:
 \begin{itemize}
 \item Label everything correctly (axis, title, units).
 \item Caption thoroughly.

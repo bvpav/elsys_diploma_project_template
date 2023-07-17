@@ -7,11 +7,15 @@
 Основният проблем е, че ТУ-София изисква дипломните работи да се принтират едностранно, а този шаблон е предвиден за двустранен печат. Обаче аз (авторът на този шаблон) считам това изискване за необосновано и отказвам да го спазвам.
 
 Използвани пакети:\
-texlive-basic (latex, koma-script, babel, hyperref, graphics, pdfpages, pgf, amsmath, amsfonts, mathtools, xkeyval, xcolor, microtype, setspace, iftex, tools, etoolbox, float, listings, caption, booktabs, soul, lm, charter, fontspec, polyglossia)\
+texlive-basic (iftex)\
+texlive-plaingeneric (soul)\
+texlive-latex (latex, babel, hyperref, hyperref, amsmath, amsmath, tools)\
+texlive-latexrecommended (koma-script, pdfpages, mathtools, xkeyval, xcolor, microtype, setspace, etoolbox, float, listings, caption, booktabs, fontspec, polyglossia)\
 texlive-latexextra (csvsimple, cleveref, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)\
+texlive-fontsrecommended (lm, charter)\
 texlive-fontsextra (dejavu)\
 texlive-mathscience (siunitx, algorithm2e)\
-texlive-pictures (circuitikz)\
+texlive-pictures (circuitikz, pgf)\
 texlive-bibtexextra (biblatex)
 
 Базиран на:

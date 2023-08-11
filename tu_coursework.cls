@@ -91,10 +91,11 @@
 \RequirePackage{tcolorbox}
 \RequirePackage{soul}
 \RequirePackage{lstautogobble}
-\RequirePackage{circuitikz}
 
 \RequirePackage[exponent-product=\cdot]{siunitx}		% units for nice formatting of numbers
 \sisetup{mode = match}
+
+\RequirePackage[americancurrents, americanvoltages, europeanresistors, americaninductors, siunitx, nooldvoltagedirection]{circuitikz}
 
 \RequirePackage{multicol}
 \setlength{\columnsep}{1.5pc}

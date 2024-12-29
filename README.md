@@ -1,23 +1,27 @@
-# Неофициален шаблон за курсова или дипломна работа в ТУ-София
+# Шаблон за документация на дипломна работа в ТУЕС към ТУ-София
 
-Шаблонът tu_coursework.cls предоставя елегантен и професионален вид на курсова работа, дипломна работа и др.
+Шаблонът elsys_diploma_project.cls предоставя елегантен и професионален вид на дипломна работа в ТУЕС към ТУ-София.
 
-**ВНИМАНИЕ! Този шаблон не претендира да отговаря на официални изисквания на ТУ-София.**
-Повечето шрифтове, цветове, размери и т.н. са запазени от шаблоните, коитото служат за основа на този. Ако Вашите ръководител, рецензент или комисия имат строги изисквания към оформлението, е Ваша отговорност да ги удовлетворите.\
+Този шаблон отговаря на [официалните изисквания](https://docs.google.com/document/d/1VzBvhvyZdmg6xZiR0t4oY2UsfA8gEJz9/edit) към структурата и оформлението на дипломната работа в ТУЕС към ТУ-София, предоставени от ръководството на ТУЕС.
 
-Използвани пакети:\
-texlive-basic (iftex)\
-texlive-plaingeneric (soul)\
-texlive-latex (latex, babel, hyperref, hyperref, amsmath, amsmath, tools)\
-texlive-latexrecommended (koma-script, pdfpages, mathtools, xkeyval, xcolor, microtype, setspace, etoolbox, float, listings, caption, booktabs, fontspec, polyglossia)\
-texlive-latexextra (csvsimple, cleveref, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)\
-texlive-fontsrecommended (lm, charter)\
-texlive-fontsextra (dejavu)\
-texlive-mathscience (siunitx, algorithm2e)\
-texlive-pictures (circuitikz, pgf)\
-texlive-bibtexextra (biblatex)
+Използвани пакети:
+
+- texlive-basic (iftex)
+- texlive-plaingeneric (soul)
+- texlive-latex (latex, babel, hyperref, hyperref, amsmath, amsmath, tools)
+- texlive-latexrecommended (koma-script, pdfpages, mathtools, xkeyval, xcolor, microtype, setspace, etoolbox, float, listings, caption, booktabs, fontspec, polyglossia)
+- texlive-latexextra (csvsimple, cleveref, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)
+- texlive-fontsrecommended (lm, charter)
+- texlive-fontsextra (dejavu)
+- texlive-mathscience (siunitx, algorithm2e)
+- texlive-pictures (circuitikz, pgf)
+- texlive-bibtexextra (biblatex)
 
 Базиран на:
+
+Шаблон за курсова работа в ТУ-София от Владимир Гаристов\
+https://github.com/VladimirGaristov/TU-Sofia_coursework_template \
+Шаблон за курсова или дипломна работа в ТУ-София, адаптиран от:
 
 UofG SoCS Level 4 Project LaTeX template by johnhw\
 https://github.com/johnhw/l4template \

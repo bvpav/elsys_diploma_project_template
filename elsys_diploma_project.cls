@@ -1,4 +1,7 @@
 % =============================================================================
+% elsys_diploma_project.cls
+% Шаблон за документация на дипломна работа в ТУЕС към ТУ-София, адаптиран от:
+%
 % tu_coursework.cls
 % Шаблон за курсова работа в ТУ-София, адаптиран от:
 %
@@ -10,13 +13,15 @@
 %
 % =============================================================================
 
-\ProvidesClass{tu_coursework}[%
+\ProvidesClass{elsys_diploma_project}[%
 2009/01/09 Colin Perkins <csp@dcs.gla.ac.uk>.%
 2009/09/16 Modified by Tim Storer <tws@dcs.gla.ac.uk> to support non pdf modes.%
 2011/02/15 Modified by Gregg Hamilton <hamiltgr@dcs.gla.ac.uk> for use in final year projects.%
 2012/10/18 Modified by Patrick Prosser, use geometry to control margins, simplified.%
 2018/09/14 Modified by John Williamson, improve typographic appearance%
 2020/05/30 Adapted by Vladimir Garistov for Technical University - Sofia%
+2021/11/03 Minor improvements%
+2024/12/29 Adapted by Bozhidar Pavlov for Technological School "Electronic Systems", associated with Technical University - Sofia%
 ]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrreprt}}
@@ -234,177 +239,194 @@
 			{
 				\large
 				\textbf{\@author}\\
-				\textbf
-				{
-					\@fac, Група \@admgroup,\\
-					ФК\textnumero\ \@facnumber\\
-					специалност \@speciality
-				}
-			}
-			\vfill\null
-			\columnbreak
-			\noindent
-			Научен ръководител:\\
-			{
-				\large
-				\textbf
-				{
-					\@supervisor\\
-					\ifthenelse{\equal{\@supervisorchair}{}}{}
-					{
-						катедра 
-						\@supervisorchair}
-					}
-			}
-		
-			\ifthenelse{\equal{\@reviewer}{}}{}
-			{
-				\noindent
-				Рецензент:\\
-				{
-					\large
-					\textbf
-					{
-						\@reviewer\\
-						\ifthenelse{\equal{\@reviewerchair}{}}{}
-						{
-							катедра 
-							\@reviewerchair}
-						}
-				}
-			}
-		
-			\vfill
-		\end{multicols}
-		
-		\vfill
-		
-		\begin{center}
-			\@date\\
-			\@city
-		\end{center}
-		\normalsize
-	\end{titlepage}
+                \textbf
+                {
+                    \@fac, Група \@admgroup,\\
+                    ФК\textnumero\ \@facnumber\\
+                    специалност \@speciality
+                }
+            }
+            \vfill\null
+            \columnbreak
+            \noindent
+            Научен ръководител:\\
+            {
+                \large
+                \textbf
+                {
+                    \@supervisor\\
+                    \ifthenelse{\equal{\@supervisorchair}{}}{}
+                    {
+                        катедра 
+                        \@supervisorchair}\\
+                    }
+            }\\
+            \ifthenelse{\equal{\@reviewer}{}}{}
+            {
+                Рецензент:\\
+                {
+                    \large
+                    \textbf
+                    {
+                        \@reviewer\\
+                        \ifthenelse{\equal{\@reviewerchair}{}}{}
+                        {
+                            катедра 
+                            \@reviewerchair}\\
+                        }
+                }
+            }
+            \vfill
+        \end{multicols}
+        
+        \vfill
+        
+        \begin{center}
+            \@date\\
+            \@city
+        \end{center}
+    \end{titlepage}
 
-	\setcounter{footnote}{0}%
-	\global\let\thanks\relax
-	\global\let\maketitle\relax
-	\global\let\@thanks\@empty
-	\global\let\@author\@empty
-	\global\let\@supervisor\@empty
-	\global\let\@reviewer\@empty
-	\global\let\@admgroup\@empty
-	\global\let\@faculty\@empty
-	\global\let\@fac\@empty
-	\global\let\@facnumber\@empty
-	\global\let\@date\@empty
-	\global\let\@city\@empty
-	\global\let\@consentname\@empty
-	\global\let\@consentdate\@empty
+    \setcounter{footnote}{0}%
+    \global\let\thanks\relax
+    \global\let\maketitle\relax
+    \global\let\@thanks\@empty
+    \global\let\@author\@empty
+    \global\let\@supervisor\@empty
+    \global\let\@reviewer\@empty
+    \global\let\@admgroup\@empty
+    \global\let\@faculty\@empty
+    \global\let\@fac\@empty
+    \global\let\@facnumber\@empty
+    \global\let\@date\@empty
+    \global\let\@city\@empty
+    \global\let\@consentname\@empty
+    \global\let\@consentdate\@empty
 
-	\global\let\@title\@empty
-	\global\let\title\relax
-	\global\let\author\relax
-	\global\let\supervisor\relax
-	\global\let\reviewer\relax
-	\global\let\admgroup\relax
-	\global\let\faculty\relax
-	\global\let\fac\relax
-	\global\let\facnumber\relax
-	\global\let\date\relax
-	\global\let\city\relax
-	\global\let\and\relax
+    \global\let\@title\@empty
+    \global\let\title\relax
+    \global\let\author\relax
+    \global\let\supervisor\relax
+    \global\let\reviewer\relax
+    \global\let\admgroup\relax
+    \global\let\faculty\relax
+    \global\let\fac\relax
+    \global\let\facnumber\relax
+    \global\let\date\relax
+    \global\let\city\relax
+    \global\let\and\relax
 }
+
+\usepackage{booktabs}
 
 % Educational consent form
 \newcommand{\educationalconsent}{
-	\ifdefined\consentname
-		  \newpage
-		  \chapter*{Education Use Consent}
+    \ifdefined\consentname
+          \newpage
+          \chapter*{Education Use Consent}
 
-		  I hereby grant my permission for this project to be stored, distributed and shown to other
-		  University of Glasgow students and staff for educational purposes. 
-		  \textbf{Please note that you are under no obligation to sign 
-		  this declaration, but doing so would help future students.}
+          I hereby grant my permission for this project to be stored, distributed and shown to other
+          University of Glasgow students and staff for educational purposes. 
+          \textbf{Please note that you are under no obligation to sign 
+          this declaration, but doing so would help future students.}
 
-		  \begin{tabular}{@{}llll}
-				&					 &			&					 \\
-				&					 &			&					 \\
-		  Signature: & \consentname & Date: & \consentdate \\
-				&					 &			&					 \\
-				&					 &			&					 \\
-		  \end{tabular}
-	\else
-	\newpage
-		\chapter*{Education Use Consent}
-		Consent for educational reuse withheld. Do not distribute.
-	\fi
+          \begin{tabular}{@{}llll}
+                &                     &            &                     \\
+                &                     &            &                     \\
+          Signature: & \consentname & Date: & \consentdate \\
+                &                     &            &                     \\
+                &                     &            &                     \\
+          \end{tabular}
+    \else
+    \newpage
+        \chapter*{Education Use Consent}
+        Consent for educational reuse withheld. Do not distribute.
+    \fi
 }
 
-% Highlight boxes
+% highlight boxes
+\usepackage{tcolorbox}
 \newenvironment{highlight}
 {\begin{tcolorbox}[notitle,boxrule=0pt,colback=green!10,colframe=green!10]}
 {
 \end{tcolorbox}
 }
+
 \newenvironment{highlight_title}[1]
 {\begin{tcolorbox}[title=#1,boxrule=2pt,colback=green!10,colframe=green!20,coltitle=black,fonttitle=\bfseries]}
 {
 \end{tcolorbox}
 }
 
-% Adjust margins
+% adjust margins
 \setlength{\parindent}{12pt}
 
-% Use (a) in subfigures
+% use (a) in figures
 \captionsetup{subrefformat=parens}
 
-% Switch to roman numeral for frontmatter
+% Algorithm typesetting package
+\usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
+\SetAlFnt{\sffamily \small}
+
+% switch to roman numeral for frontmatter
 \pagenumbering{Roman}
 
-% Fix itemise so it looks reasonable
+% fix itemise so it looks reasonable
 \renewcommand{\@listI}{%
-	  \leftmargin=25pt
-	  \rightmargin=0pt
-	  \labelsep=5pt
-	  \labelwidth=20pt
-	  \itemindent=0pt
-	  \listparindent=0pt
-	  \topsep=0pt plus 2pt minus 4pt
-	  \partopsep=0pt plus 1pt minus 1pt
-	  \parsep=1pt plus 1pt
-	  \itemsep=\parsep}
+      \leftmargin=25pt
+      \rightmargin=0pt
+      \labelsep=5pt
+      \labelwidth=20pt
+      \itemindent=0pt
+      \listparindent=0pt
+      \topsep=0pt plus 2pt minus 4pt
+      \partopsep=0pt plus 1pt minus 1pt
+      \parsep=1pt plus 1pt
+      \itemsep=\parsep}
 
-% Allow highlighting of text for todo notes
-\newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
+% allow highlighting of text for todo notes
+\usepackage{soul}
+\newcommand{\todo}[1]{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
 
-% Dirty fix for a formatting issues, caused by redefining \appendix in hyperref
+% units for nice formatting of numbers
+\usepackage{siunitx}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{arrow_no_head} = [thick]
+
+
+% Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
 \renewcommand{\appendix}
 {%
-	\setcounter{chapter}{0}
-	\setcounter{section}{0}
-	\renewcommand\chapapp{\appendixname}
-	\renewcommand\thechapter{\Alph{chapter}}
-	\renewcommand\theHchapter{\Alph{chapter}}
-	\renewcommand{\chaptermark}[1]{%
-		\markboth{%
-			\ctfontfootertext
-			% use \@chapapp instead of \chaptername to avoid
-			% 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
-			{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
-			\hspace{.25cm}%
-			%\protect\begin{minipage}[t]{.65\textwidth}%
-				##1%
-			%\protect\end{minipage}%
-		}{}%
-	}
-	%\cleardoublepage
-	\clearpage
-	\addcontentsline{toc}{chapter}{Приложения}%
+    \setcounter{chapter}{0}
+    \setcounter{section}{0}
+    \renewcommand\chapapp{\appendixname}
+    \renewcommand\thechapter{\Alph{chapter}}
+    \renewcommand\theHchapter{\Alph{chapter}}
+    \renewcommand{\chaptermark}[1]{%
+        \markboth{%
+            \ctfontfootertext
+            % use \@chapapp instead of \chaptername to avoid
+            % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+    		\hspace{.25cm}%
+            %\protect\begin{minipage}[t]{.65\textwidth}%
+                ##1%
+            %\protect\end{minipage}%
+        }{}%
+    }
+    %\cleardoublepage
+    \clearpage
+    \addcontentsline{toc}{chapter}{Приложения}%
 }
 
-% Font size for mathematical expressions
-\DeclareMathSizes{10}{12}{10}{9}
+%\DeclareMathSizes{9}{10.5}{7.5}{7.5}

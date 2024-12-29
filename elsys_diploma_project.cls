@@ -253,31 +253,6 @@
 }
 \usepackage{booktabs}
 
-% Educational consent form
-\newcommand{\educationalconsent}{
-    \ifdefined\consentname
-          \newpage
-          \chapter*{Education Use Consent}
-
-          I hereby grant my permission for this project to be stored, distributed and shown to other
-          University of Glasgow students and staff for educational purposes. 
-          \textbf{Please note that you are under no obligation to sign 
-          this declaration, but doing so would help future students.}
-
-          \begin{tabular}{@{}llll}
-                &                     &            &                     \\
-                &                     &            &                     \\
-          Signature: & \consentname & Date: & \consentdate \\
-                &                     &            &                     \\
-                &                     &            &                     \\
-          \end{tabular}
-    \else
-    \newpage
-        \chapter*{Education Use Consent}
-        Consent for educational reuse withheld. Do not distribute.
-    \fi
-}
-
 % highlight boxes
 \usepackage{tcolorbox}
 \newenvironment{highlight}

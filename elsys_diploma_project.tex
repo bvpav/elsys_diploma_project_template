@@ -29,73 +29,44 @@
 
 \begin{document}
 
-%================================================================================
-%% ЗАГЛАВИЕ
+%=====================================================================================================
+%% ТИТУЛНА СТРАНИЦА
 \maketitle
-\cleardoublepage
 
-%================================================================================
+\pagenumbering{arabic}
+
+%=====================================================================================================
 %% ЗАДАНИЕ
 \includepdf[pages={1}]{documents/assignment.pdf}
 \cleardoublepage
 
-%================================================================================
-%% ДЕКЛАРАЦИЯ ЗА АКАДЕМИЧНА ЧЕСТНОСТ
-%\includepdf[pages={1}]{documents/declaration.pdf}
-%\cleardoublepage
+%=====================================================================================================
+%% ГЛАВИ
+% Добра структура е всяка глава да бъде в отделен .tex файл.
+\input{chapters/intro}
+\input{chapters/chapter1-research}
+\input{chapters/chapter2-requirements}
+\input{chapters/chapter3-implementation}
+\input{chapters/chapter4-user-manual}
+\input{chapters/conclusion}
 
-%================================================================================
-%% БЛАГОДАРНОСТИ
-%\chapter*{Благодарности}
-\begin{center}
-	\pagebreak
-	\hspace{0pt}
-	\vfill
-	\large
-	Благодарности на\\Роси Мандраджийката за дето домъкна уредбата,\\на Ванката и Томи за дето опекоха скарата\\и на Миле Китич.
-	\vfill
-	\hspace{0pt}
-	\pagebreak
-\end{center}
-\cleardoublepage
+%=====================================================================================================
+%% ИЗПОЛЗВАНА ЛИТЕРАТУРА
+\nocite{soviet_ics}
+\nocite{rechniko}
+\printbibliography
 
-%================================================================================
-%% АБСТРАКТ
-\begin{abstract}
-	Every abstract follows a similar pattern. Motivate; set aims; describe work; explain results.
-	\vskip 0.5em
-	``XYZ is bad. This project investigated ABC to determine if it was better. 
-	ABC used XXX and YYY to implement ZZZ. This is particularly interesting as XXX and YYY have
-	never been used together. It was found that  
-	ABC was 20\% better than XYZ, though it caused rabies in half of subjects.''
-\end{abstract}
-\cleardoublepage
-
-%================================================================================
+%=====================================================================================================
 %% СЪДЪРЖАНИЕ
 \tableofcontents
 \listoffigures
 \listoftables
 \vfill
 \pagebreak
-\pagenumbering{arabic}
 
-%================================================================================
-%% ГЛАВИ
-% Добра структура е всяка глава да бъде в отделен .tex файл.
-\input{intro}
-\input{example}
-\input{conclusion}
-
-%================================================================================
+%=====================================================================================================
 %% ПРИЛОЖЕНИЯ
 \appendix
-\input{appendix}
-
-%================================================================================
-%% БИБЛИОГРАФИЯ
-\nocite{soviet_ics}
-\nocite{rechniko}
-\printbibliography
+\input{chapters/appendix}
 
 \end{document}

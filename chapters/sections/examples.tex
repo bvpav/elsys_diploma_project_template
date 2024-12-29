@@ -1,0 +1,281 @@
+\section{Общи насоки за техническо писане}
+
+Тези точки се отнасят за цялата дипломна работа, не само за тази глава.
+
+\subsection{Фигури}
+\emph{Винаги} се позовавайте на включените фигури, като Фигура \cref{fig:relu}, в основния текст. Включвайте пълни, обяснителни надписи и се уверете, че фигурите изглеждат добре на страницата.
+Можете да включите множество фигури в един float, както във Фигура \cref{fig:synthetic}, използвайки \texttt{subcaption}, който е активиран в шаблона.
+
+
+% Figures are important. Use them well.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/relu.pdf}    
+
+    \caption{В надписите на фигурите обяснете какво вижда читателят: ,,Схема на изправящата линейна единица, където $a$ е изходната амплитуда,
+    $d$ е конфигурируема мъртва зона, а $Z_j$ е входният сигнал'', както и защо читателят гледа това: 
+    ,,Забележително е, че няма никаква активация \emph{изобщо} под 0, което обяснява първоначалните ни резултати.'' 
+    \textbf{Използвайте векторни формати на изображения (.pdf) където е възможно}. Оразмерявайте фигурите подходящо и не ги правете прекалено големи или твърде малки за четене.
+    }
+
+    % use the notation fig:name to cross reference a figure
+    \label{fig:relu} 
+\end{figure}
+
+
+\begin{figure}[htb] 
+    \centering
+    \begin{subfigure}[h]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/synthetic.png}
+        \caption{Синтетично изображение, черно на бяло.}
+        \label{fig:syn1}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[h]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/synthetic_2.png}
+        \caption{Синтетично изображение, бяло на черно.}
+        \label{fig:syn2}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)    
+    \caption{Синтетични тестови изображения за алгоритми за откриване на ръбове. \subref{fig:syn1} показва различни нива на сиво, които изискват адаптивен алгоритъм. \subref{fig:syn2}
+    показва по-предизвикателни тестове за откриване на ръбове, които имат пресичащи се линии. Сливането им в пълни сегменти обикновено изисква алгоритми като трансформацията на Хаф.
+    Това е пример за използване на подфигури, с \texttt{subref}s в надписа.
+    }\label{fig:synthetic}
+\end{figure}
+
+\clearpage
+
+\subsection{Уравнения}
+
+Уравненията трябва да бъдат набрани правилно и прецизно. Уверете се, че размерът на скобите е правилен и пунктуацията на уравненията е правилна 
+(запетаята е важна и отива \textit{вътре} в блока на уравнението). Обяснете ясно всички използвани символи, ако не са дефинирани по-рано. 
+
+Например, бихме могли да дефинираме:
+\begin{equation}
+    \hat{f}(\xi) = \frac{1}{2}\left[ \int_{-\infty}^{\infty} f(x) e^{2\pi i x \xi} \right],
+\end{equation}    
+където $\hat{f}(\xi)$ е Фурие трансформацията на времевия сигнал $f(x)$.
+
+\subsection{Алгоритми}
+Алгоритмите могат да бъдат набрани с помощта на \texttt{algorithm2e}, както в Алгоритъм \cref{alg:metropolis}.
+
+% NOTE: line ends are denoted by \; in algorithm2e
+\begin{algorithm}
+    \DontPrintSemicolon
+    \KwData{$f_X(x)$, a probability density function returing the density at $x$.\; $\sigma$ a standard deviation specifying the spread of the proposal distribution.\;
+    $x_0$, an initial starting condition.}
+    \KwResult{$s=[x_1, x_2, \dots, x_n]$, $n$ samples approximately drawn from a distribution with PDF $f_X(x)$.}
+    \Begin{
+        $s \longleftarrow []$\;
+        $p \longleftarrow f_X(x)$\;
+        $i \longleftarrow 0$\;
+        \While{$i < n$}
+        {
+            $x^\prime \longleftarrow \mathcal{N}(x, \sigma^2)$\;
+            $p^\prime \longleftarrow f_X(x^\prime)$\;
+            $a \longleftarrow \frac{p^\prime}{p}$\;
+            $r \longleftarrow U(0,1)$\;
+            \If{$r<a$}
+            {
+                $x \longleftarrow x^\prime$\;
+                $p \longleftarrow f_X(x)$\;
+                $i \longleftarrow i+1$\;
+                append $x$ to $s$\;
+            }
+        }
+    }
+    
+\caption{Алгоритъмът Metropolis-Hastings MCMC за извличане на проби от произволни вероятностни разпределения, 
+специализиран за нормални предложени разпределения $q(x^\prime|x) = \mathcal{N}(x, \sigma^2)$. Симетрията на нормалното разпределение означава, че правилото за приемане приема опростената форма.}\label{alg:metropolis}
+\end{algorithm}
+
+\subsection{Таблици}
+
+Ако трябва да включите таблици, като Таблица \cref{tab:operators}, използвайте инструмент като\\ https://www.tablesgenerator.com/ за генериране на таблицата, тъй като е
+изключително досадно в противен случай. 
+
+\begin{table}
+    \caption{Стандартната таблица с оператори в Python, заедно с техните функционални еквиваленти от пакета \texttt{operator}. Забележете, че надписите
+    на таблиците отиват над таблицата, а не под нея. Не добавяйте допълнителни линии/черти към таблиците.}\label{tab:operators}
+    %\tt 
+    \rowcolors{2}{}{gray!3}
+    \begin{tabular}{@{}lll@{}}
+    %\toprule
+    \textbf{Операция}    & \textbf{Синтаксис}                & \textbf{Функция}                            \\ %\midrule % optional rule for header
+    Addition              & \texttt{a + b}                          & \texttt{add(a, b)}                                    \\
+    Concatenation         & \texttt{seq1 + seq2}                    & \texttt{concat(seq1, seq2)}                           \\
+    Containment Test      & \texttt{obj in seq}                     & \texttt{contains(seq, obj)}                           \\
+    Division              & \texttt{a / b}                          & \texttt{div(a, b) }  \\
+    Division              & \texttt{a / b}                          & \texttt{truediv(a, b) } \\
+    Division              & \texttt{a // b}                         & \texttt{floordiv(a, b)}                               \\
+    Bitwise And           & \texttt{a \& b}                         & \texttt{and\_(a, b)}                                  \\
+    Bitwise Exclusive Or  & \texttt{a \textasciicircum b}           & \texttt{xor(a, b)}                                    \\
+    Bitwise Inversion     & \texttt{$\sim$a}                        & \texttt{invert(a)}                                    \\
+    Bitwise Or            & \texttt{a | b}                          & \texttt{or\_(a, b)}                                   \\
+    Exponentiation        & \texttt{a ** b}                         & \texttt{pow(a, b)}                                    \\
+    Identity              & \texttt{a is b}                         & \texttt{is\_(a, b)}                                   \\
+    Identity              & \texttt{a is not b}                     & \texttt{is\_not(a, b)}                                \\
+    Indexed Assignment    & \texttt{obj{[}k{]} = v}                 & \texttt{setitem(obj, k, v)}                           \\
+    Indexed Deletion      & \texttt{del obj{[}k{]}}                 & \texttt{delitem(obj, k)}                              \\
+    Indexing              & \texttt{obj{[}k{]}}                     & \texttt{getitem(obj, k)}                              \\
+    Left Shift            & \texttt{a \textless{}\textless b}       & \texttt{lshift(a, b)}                                 \\
+    Modulo                & \texttt{a \% b}                         & \texttt{mod(a, b)}                                    \\
+    Multiplication        & \texttt{a * b}                          & \texttt{mul(a, b)}                                    \\
+    Negation (Arithmetic) & \texttt{- a}                            & \texttt{neg(a)}                                       \\
+    Negation (Logical)    & \texttt{not a}                          & \texttt{not\_(a)}                                     \\
+    Positive              & \texttt{+ a}                            & \texttt{pos(a)}                                       \\
+    Right Shift           & \texttt{a \textgreater{}\textgreater b} & \texttt{rshift(a, b)}                                 \\
+    Sequence Repetition   & \texttt{seq * i}                        & \texttt{repeat(seq, i)}                               \\
+    Slice Assignment      & \texttt{seq{[}i:j{]} = values}          & \texttt{setitem(seq, slice(i, j), values)}            \\
+    Slice Deletion        & \texttt{del seq{[}i:j{]}}               & \texttt{delitem(seq, slice(i, j))}                    \\
+    Slicing               & \texttt{seq{[}i:j{]}}                   & \texttt{getitem(seq, slice(i, j))}                    \\
+    String Formatting     & \texttt{s \% obj}                       & \texttt{mod(s, obj)}                                  \\
+    Subtraction           & \texttt{a - b}                          & \texttt{sub(a, b)}                                    \\
+    Truth Test            & \texttt{obj}                            & \texttt{truth(obj)}                                   \\
+    Ordering              & \texttt{a \textless b}                  & \texttt{lt(a, b)}                                     \\
+    Ordering              & \texttt{a \textless{}= b}               & \texttt{le(a, b)}                                     \\
+    % \bottomrule
+    \end{tabular}
+    \end{table}
+\subsection{Код}
+
+Избягвайте да поставяте големи блокове код в отчета (повече от страница в един блок, например). Използвайте оцветяване на синтаксиса, ако е възможно, както в Листинг \cref{lst:callahan}.
+
+\begin{lstlisting}[language=python, float, caption={The algorithm for packing the $3\times 3$ outer-totalistic binary CA successor rule into a 
+    $16\times 16\times 16\times 16$ 4 bit lookup table, running an equivalent, notionally 16-state $2\times 2$ CA.}, label=lst:callahan]
+    def create_callahan_table(rule="b3s23"):
+        """Generate the lookup table for the cells."""        
+        s_table = np.zeros((16, 16, 16, 16), dtype=np.uint8)
+        birth, survive = parse_rule(rule)
+
+        # generate all 16 bit strings
+        for iv in range(65536):
+            bv = [(iv >> z) & 1 for z in range(16)]
+            a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p = bv
+
+            # compute next state of the inner 2x2
+            nw = apply_rule(f, a, b, c, e, g, i, j, k)
+            ne = apply_rule(g, b, c, d, f, h, j, k, l)
+            sw = apply_rule(j, e, f, g, i, k, m, n, o)
+            se = apply_rule(k, f, g, h, j, l, n, o, p)
+
+            # compute the index of this 4x4
+            nw_code = a | (b << 1) | (e << 2) | (f << 3)
+            ne_code = c | (d << 1) | (g << 2) | (h << 3)
+            sw_code = i | (j << 1) | (m << 2) | (n << 3)
+            se_code = k | (l << 1) | (o << 2) | (p << 3)
+
+            # compute the state for the 2x2
+            next_code = nw | (ne << 1) | (sw << 2) | (se << 3)
+
+            # get the 4x4 index, and write into the table
+            s_table[nw_code, ne_code, sw_code, se_code] = next_code
+
+        return s_table
+
+\end{lstlisting}
+
+%=====================================================================================================
+
+\subsection{Доказателства}
+Уверете се, че представяте доказателствата си добре. Използвайте подходящи визуализации, 
+техники за докладване и статистически анализ, според случая. Целта не е
+да изсипете всички данни, които имате, а да представите добре подкрепен с доказателства аргумент.
+
+Ако използвате числови доказателства, посочете разумен брой значещи цифри; не казвайте ,,18.41141\% от потребителите са били успешни'', ако сте имали само 20 потребители. Ако усреднявате \textit{каквото и да е}, представете както мярка за централна тенденция (напр. средна стойност, медиана), \textit{така и} мярка за разпръскване (напр. стандартно отклонение, мин/макс, интерквартилен диапазон).
+
+Можете да използвате \texttt{siunitx} за дефиниране на единици, подреждане на числата спретнато и задаване на прецизност за целия LaTeX документ. 
+
+% setup siunitx to have two decimal places
+\sisetup{
+	round-mode = places,
+	round-precision = 2
+}
+
+Например, тези числа ще се появят с два десетични знака: \num{3.141592}, \num{2.71828}, а това ще се появи с разумно разстояние \num{1000000}.
+
+Ако използвате статистически процедури, уверете се, че разбирате процеса, който използвате,
+и че проверявате дали необходимите предположения са валидни във вашия случай. 
+
+Ако визуализирате, следвайте основните правила, както е илюстрирано във Фигура \cref{fig:boxplot}:
+\begin{itemize}
+\item Надпишете всичко правилно (оси, заглавие, единици).
+\item Надпишете подробно.
+\item Цитирайте в текста.
+\item \textbf{Включете подходящо показване на несигурността (напр. ленти на грешката, Box plot)}
+\item Минимизирайте безпорядъка.
+\end{itemize}
+
+Вижте файла \texttt{guide\_to\_visualising.pdf} за допълнителна информация и насоки.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/boxplot_finger_distance.pdf}    
+
+    \caption{Среден брой пръсти, открити от сензора за докосване на различни височини над повърхността, усреднено за всички жестове. Пунктираните линии показват
+    истинския брой присъстващи пръсти. Box plots включват bootstrapped несигурност за медианата. Ясно е, че устройството е склонно към
+    подценяване на броя на пръстите, особено при по-високи $z$ разстояния.
+    }
+
+    % use the notation fig:name to cross reference a figure
+    \label{fig:boxplot} 
+\end{figure}
+
+\subsection{TODO-та}
+
+\todo{Напиши цялата документация на дипломната работа}
+
+\subsection{Цитати}
+
+\cleanchapterquote{Абсолютно всички цитати на известни личности в Интернет са 100\% верни.}{Алберт Айнщайн}{(ТУЕС-ар)}
+
+\subsection{Източници и ръководства за стил}
+Има много ръководства за добро писане на български и английски език. Не е
+задължително да ги прочетете, но те ще подобрят начина, по който пишете.
+
+\begin{itemize}
+    \item
+    \emph{Как да напишем страхотна научна статия} \cite{Pey17} (\textbf{препоръчително}, въпреки че не пишете научна статия)
+    \item
+    \emph{Как да пишем със стил} \cite{Von80}. Кратко и лесно за четене. Достъпно онлайн.
+    \item
+    \emph{Стил: Основите на яснотата и изяществото} \cite{Wil09} Много популярно съвременно ръководство за английски стил.
+    \item
+    \emph{Политика и английският език} \cite{Orw68} Известно есе за ефективно и ясно писане на английски.
+    \item
+    \emph{Елементите на стила} \cite{StrWhi07} Остаряло и американско, но класическо.
+    \item
+    \emph{Усетът за стил} \cite{Pin15} Отлично, макар и доста задълбочено.
+\end{itemize}
+
+\subsubsection{Стилове на цитиране}
+
+\begin{itemize}
+\item Ако се позовавате на източник като съществително, цитирайте го така: ,,\citet{Orw68} разглежда ролята на езика в политическата мисъл.''
+\item Ако се позовавате имплицитно на източници, използвайте: ,,Има много добри книги за писане \citep{Orw68, Wil09, Pin15}.''
+\end{itemize}
+
+Пълно ръководство за добри практики при цитиране от Питър Коксхед е достъпно тук: \url{http://www.cs.bham.ac.uk/~pxc/refs/index.html}.
+Ако не сте сигурни как да цитирате онлайн източници, вижте \citet{UNSWWebsite}.
+\footnote{Понякога е по-подходящо да се посочи онлайн ресурс като \url{https://developer.android.com/studio}
+в бележка под линия, отколкото да се включва като формална референция.}
+
+\subsection{Предупреждение за плагиатство}
+
+\begin{highlight_title}{ВНИМАНИЕ}
+    
+    Ако включвате материал от други източници без пълно и коректно цитиране, извършвате плагиатство. Наказанията за плагиатство са тежки.
+    Цитирайте всеки включен текст и го посочвайте правилно. Цитирайте ясно всички изображения, фигури и др. в техните описания.
+\end{highlight_title}
+
+\subsection{Цитиране на текст}
+
+Когато цитирате дълъг пасаж, използвайте средата \texttt{quote}:
+
+\begin{quote}
+    Ако драскате мислите си как да е, читателите със сигурност ще почувстват, че изобщо не ви е грижа за тях. Те ще ви определят като егоманиак или глупак - или още по-лошо, ще спрат да ви четат. Най-осъдителното разкритие, което можете да направите за себе си, е че не знаете кое е интересно и кое не е.
+\end{quote} \citep{Von80}
+
+Когато цитирате в текста, както следната забележка на Саймън Пейтън-Джоунс, използвайте кавички ,,Предаването на интуицията е първостепенно, а не второстепенно'' \citep{Pey17}.

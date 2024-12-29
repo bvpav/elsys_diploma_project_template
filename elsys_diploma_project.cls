@@ -174,22 +174,14 @@
 % Metadata
 \newcommand{\@supervisor}{}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
-\newcommand{\@supervisorchair}{}
-\newcommand{\supervisorchair}[1]{\renewcommand{\@supervisorchair}{#1}}
-\newcommand{\@reviewer}{}
-\newcommand{\reviewer}[1]{\renewcommand{\@reviewer}{#1}}
-\newcommand{\@reviewerchair}{}
-\newcommand{\reviewerchair}[1]{\renewcommand{\@reviewerchair}{#1}}
-\newcommand{\@admgroup}{}
-\newcommand{\admgroup}[1]{\renewcommand{\@admgroup}{#1}}
-\newcommand{\@faculty}{}
-\newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}
-\newcommand{\@fac}{}
-\newcommand{\fac}[1]{\renewcommand{\@fac}{#1}}
-\newcommand{\@facnumber}{}
-\newcommand{\facnumber}[1]{\renewcommand{\@facnumber}{#1}}
 \newcommand{\@speciality}{}
 \newcommand{\speciality}[1]{\renewcommand{\@speciality}{#1}}
+\newcommand{\@specialitycode}{}
+\newcommand{\specialitycode}[1]{\renewcommand{\@specialitycode}{#1}}
+\newcommand{\@profession}{}
+\newcommand{\profession}[1]{\renewcommand{\@profession}{#1}}
+\newcommand{\@professioncode}{}
+\newcommand{\professioncode}[1]{\renewcommand{\@professioncode}{#1}}
 \newcommand{\@doctype}{}
 \newcommand{\doctype}[1]{\renewcommand{\@doctype}{#1}}
 \newcommand{\@city}{}
@@ -198,92 +190,47 @@
 % Define the title page
 \renewcommand\maketitle
 {
-	\begin{titlepage}
-		\definecolor{UniBlue}{HTML}{00355F}
-
-		%\let\footnotesize\small
-		\let\footnoterule\relax
-		\let\footnote \thanks
-
-		% the logo, full page width
-		\vspace{1in}
-		\begin{figure}[h]
-			\includegraphics[width=\linewidth]{images/TU-logo_long.png}
-		\end{figure}
-		\vskip 0.5em
-		
-		\color{UniBlue}
-		\begin{center}
-			\LARGE\sffamily\@faculty
-		\end{center}
-
-		% title and author
-		\vspace{2cm}
-		\large
-		\vskip 8em%
-		\begin{center}
-			\noindent
-			\fontsize{35}{35}
-			\upshape\@doctype\par
-			\normalsize
-			\Large
-			на тема\par
-			\noindent
-			\Huge\upshape\@title\par
-		\end{center}
-		\vfill
-		
-		\begin{multicols}{2}
-			\noindent
-			Автор:\\
-			{
-				\large
-				\textbf{\@author}\\
-                \textbf
-                {
-                    \@fac, Група \@admgroup,\\
-                    ФК\textnumero\ \@facnumber\\
-                    специалност \@speciality
-                }
-            }
-            \vfill\null
-            \columnbreak
-            \noindent
-            Научен ръководител:\\
-            {
-                \large
-                \textbf
-                {
-                    \@supervisor\\
-                    \ifthenelse{\equal{\@supervisorchair}{}}{}
-                    {
-                        катедра 
-                        \@supervisorchair}\\
-                    }
-            }\\
-            \ifthenelse{\equal{\@reviewer}{}}{}
-            {
-                Рецензент:\\
-                {
-                    \large
-                    \textbf
-                    {
-                        \@reviewer\\
-                        \ifthenelse{\equal{\@reviewerchair}{}}{}
-                        {
-                            катедра 
-                            \@reviewerchair}\\
-                        }
-                }
-            }
-            \vfill
-        \end{multicols}
-        
-        \vfill
-        
+    \begin{titlepage}
         \begin{center}
-            \@date\\
-            \@city
+            \begin{minipage}[t]{0.15\textwidth}
+                \vspace{0pt}
+                \includegraphics[width=\textwidth]{images/elsys_logo.png}
+            \end{minipage}%
+            \begin{minipage}[t]{0.83\textwidth}
+                \vspace{0pt}
+                \begin{center}
+                    {\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ}\\[0.5em]
+                    {към ТЕХНИЧЕСКИ УНИВЕРСИТЕТ - СОФИЯ}
+                \end{center}
+            \end{minipage}
+            
+            \vspace{4cm}
+            
+            {\Huge\bfseries \MakeUppercase{\@doctype}}\\
+            \vspace{1cm}
+            
+            {\bfseries
+                \begin{tabular}{l}
+                    по професия код {\@professioncode} ,,{\@profession}''\\
+                    специалност код {\@specialitycode} ,,{\@speciality}''
+                \end{tabular}
+            }
+            \vspace{2cm}
+            
+            {\Large Тема: \textbf{\@title}}\\
+            \vspace{4cm}
+            
+            \begin{center}
+                \begin{tabular}{l@{\hspace{2cm}}l}
+                    {\large Дипломант:} & {\large Дипломен ръководител:} \\
+                    {\large\@author} & {\large\@supervisor} \\
+                \end{tabular}
+            \end{center}
+            
+            \vfill
+            
+            {\Large \MakeUppercase{\@city}}\\[0.5em]
+            {\large\the\year}
         \end{center}
     \end{titlepage}
 
@@ -293,30 +240,17 @@
     \global\let\@thanks\@empty
     \global\let\@author\@empty
     \global\let\@supervisor\@empty
-    \global\let\@reviewer\@empty
-    \global\let\@admgroup\@empty
-    \global\let\@faculty\@empty
-    \global\let\@fac\@empty
-    \global\let\@facnumber\@empty
     \global\let\@date\@empty
     \global\let\@city\@empty
-    \global\let\@consentname\@empty
-    \global\let\@consentdate\@empty
 
     \global\let\@title\@empty
     \global\let\title\relax
     \global\let\author\relax
     \global\let\supervisor\relax
-    \global\let\reviewer\relax
-    \global\let\admgroup\relax
-    \global\let\faculty\relax
-    \global\let\fac\relax
-    \global\let\facnumber\relax
     \global\let\date\relax
     \global\let\city\relax
     \global\let\and\relax
 }
-
 \usepackage{booktabs}
 
 % Educational consent form

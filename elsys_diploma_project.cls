@@ -33,7 +33,7 @@
 	parskip=half,				% spacing value / method for paragraphs
 	chapterprefix=false,		% do not display a prefix for chapters
 	appendixprefix=true,		% but display a prefix for appendix chapter
-	fontsize=10pt,				% font size
+	fontsize=12pt,				% font size
 	headings=normal,			% size of headings
 	bibliography=totoc,			% include bib in toc
 	listof=totoc,				% include listof entries in toc
@@ -346,3 +346,11 @@
 }
 
 %\DeclareMathSizes{9}{10.5}{7.5}{7.5}
+
+% Set line spacing to 1.5
+\RequirePackage{setspace}
+\onehalfspacing
+
+% Set text height to accommodate approximately 30 lines per page
+\setlength{\textheight}{247mm}  % Adjusted for approximately 30 lines at 12pt
+\setlength{\textwidth}{160mm}   % Set width for approximately 60 characters per line

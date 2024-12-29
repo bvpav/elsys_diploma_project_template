@@ -1,0 +1,31 @@
+#!/bin/sh --
+
+exec > Makefile
+
+cat << 'EOF'
+.POSIX:
+.SUFFIXES:
+.PHONY: all clean
+
+TARGET = elsys_diploma_project.pdf
+MAIN_SRC = elsys_diploma_project.tex
+
+SOURCES = elsys_diploma_project.cls cleanthesis.sty \
+EOF
+
+find chapters documents images -type f -printf '\t%p \\\n' | sort
+
+cat << 'EOF'
+
+all: $(TARGET)
+
+$(TARGET): $(MAIN_SRC) $(SOURCES)
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make $(MAIN_SRC)
+
+mostlyclean:
+	latexmk -c
+
+clean:
+	latexmk -C
+	rm -f *.bbl *-SAVE-ERROR
+EOF

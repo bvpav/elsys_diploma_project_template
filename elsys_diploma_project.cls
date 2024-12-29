@@ -169,6 +169,13 @@
 % Must be loaded after hyperref
 \RequirePackage[nameinlink,bulgarian]{cleveref_bg}
 
+\defbibheading{bibliography}[\bibname]
+{
+    \chapter*{Използвана литература}%
+    \addcontentsline{toc}{chapter}{Използвана литература}
+    \markboth{Използвана литература}{Използвана литература}
+}
+
 \textheight=24cm
 
 % Metadata

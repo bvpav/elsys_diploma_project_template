@@ -197,18 +197,18 @@
 % Define the title page
 \renewcommand\maketitle
 {
-    \begin{titlepage}
-        \begin{center}
+	\begin{titlepage}
+		\begin{center}
             \begin{minipage}[t]{0.15\textwidth}
                 \vspace{0pt}
                 \includegraphics[width=\textwidth]{images/elsys_logo.png}
             \end{minipage}%
             \begin{minipage}[t]{0.83\textwidth}
                 \vspace{0pt}
-                \begin{center}
+		\begin{center}
                     {\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ}\\[0.5em]
                     {към ТЕХНИЧЕСКИ УНИВЕРСИТЕТ - СОФИЯ}
-                \end{center}
+		\end{center}
             \end{minipage}
             
             \vspace{4cm}
@@ -233,124 +233,97 @@
                     {\large\@author} & {\large\@supervisor} \\
                 \end{tabular}
             \end{center}
-            
-            \vfill
-            
+		
+		\vfill
+		
             {\Large \MakeUppercase{\@city}}\\[0.5em]
             {\large\the\year}
-        \end{center}
-    \end{titlepage}
+		\end{center}
+		\normalsize
+	\end{titlepage}
 
-    \setcounter{footnote}{0}%
-    \global\let\thanks\relax
-    \global\let\maketitle\relax
-    \global\let\@thanks\@empty
-    \global\let\@author\@empty
-    \global\let\@supervisor\@empty
-    \global\let\@date\@empty
-    \global\let\@city\@empty
+	\setcounter{footnote}{0}%
+	\global\let\thanks\relax
+	\global\let\maketitle\relax
+	\global\let\@thanks\@empty
+	\global\let\@author\@empty
+	\global\let\@supervisor\@empty
+	\global\let\@date\@empty
+	\global\let\@city\@empty
 
-    \global\let\@title\@empty
-    \global\let\title\relax
-    \global\let\author\relax
-    \global\let\supervisor\relax
-    \global\let\date\relax
-    \global\let\city\relax
-    \global\let\and\relax
+	\global\let\@title\@empty
+	\global\let\title\relax
+	\global\let\author\relax
+	\global\let\supervisor\relax
+	\global\let\date\relax
+	\global\let\city\relax
+	\global\let\and\relax
 }
-\usepackage{booktabs}
 
 % highlight boxes
-\usepackage{tcolorbox}
 \newenvironment{highlight}
 {\begin{tcolorbox}[notitle,boxrule=0pt,colback=green!10,colframe=green!10]}
 {
 \end{tcolorbox}
 }
-
 \newenvironment{highlight_title}[1]
 {\begin{tcolorbox}[title=#1,boxrule=2pt,colback=green!10,colframe=green!20,coltitle=black,fonttitle=\bfseries]}
 {
 \end{tcolorbox}
 }
 
-% adjust margins
+% Adjust margins
 \setlength{\parindent}{12pt}
 
-% use (a) in figures
+% Use (a) in subfigures
 \captionsetup{subrefformat=parens}
 
-% Algorithm typesetting package
-\usepackage[plain, noline, shortend, linesnumberedhidden]{algorithm2e}
-\SetAlFnt{\sffamily \small}
-
-% switch to roman numeral for frontmatter
+% Switch to roman numeral for frontmatter
 \pagenumbering{Roman}
 
-% fix itemise so it looks reasonable
+% Fix itemise so it looks reasonable
 \renewcommand{\@listI}{%
-      \leftmargin=25pt
-      \rightmargin=0pt
-      \labelsep=5pt
-      \labelwidth=20pt
-      \itemindent=0pt
-      \listparindent=0pt
-      \topsep=0pt plus 2pt minus 4pt
-      \partopsep=0pt plus 1pt minus 1pt
-      \parsep=1pt plus 1pt
-      \itemsep=\parsep}
+	  \leftmargin=25pt
+	  \rightmargin=0pt
+	  \labelsep=5pt
+	  \labelwidth=20pt
+	  \itemindent=0pt
+	  \listparindent=0pt
+	  \topsep=0pt plus 2pt minus 4pt
+	  \partopsep=0pt plus 1pt minus 1pt
+	  \parsep=1pt plus 1pt
+	  \itemsep=\parsep}
 
-% allow highlighting of text for todo notes
-\usepackage{soul}
-\newcommand{\todo}[1]{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}
+% Allow highlighting of text for todo notes
+\newcommand{\todo}[1]{{\large \hl{TODO: #1}\PackageWarning{TODO:}{#1!}}}
 
 % make urls less bulky and ugly
 \renewcommand{\UrlFont}{\ttfamily\small}
 
-% units for nice formatting of numbers
-\usepackage{siunitx}
-
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
-\tikzstyle{decision} = [diamond, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30, inner sep = -0.4cm]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{arrow_no_head} = [thick]
-
-
-% Мърлява заобиколка на проблем с форматирането, причинен от редефинирането на \appendix от hyperref
+% Dirty fix for a formatting issues, caused by redefining \appendix in hyperref
 \renewcommand{\appendix}
 {%
-    \setcounter{chapter}{0}
-    \setcounter{section}{0}
-    \renewcommand\chapapp{\appendixname}
-    \renewcommand\thechapter{\Alph{chapter}}
-    \renewcommand\theHchapter{\Alph{chapter}}
-    \renewcommand{\chaptermark}[1]{%
-        \markboth{%
-            \ctfontfootertext
-            % use \@chapapp instead of \chaptername to avoid
-            % 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
-    		{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
-    		\hspace{.25cm}%
-            %\protect\begin{minipage}[t]{.65\textwidth}%
-                ##1%
-            %\protect\end{minipage}%
-        }{}%
-    }
-    %\cleardoublepage
-    \clearpage
-    \addcontentsline{toc}{chapter}{Приложения}%
+	\setcounter{chapter}{0}
+	\setcounter{section}{0}
+	\renewcommand\chapapp{\appendixname}
+	\renewcommand\thechapter{\Alph{chapter}}
+	\renewcommand\theHchapter{\Alph{chapter}}
+	\renewcommand{\chaptermark}[1]{%
+		\markboth{%
+			\ctfontfootertext
+			% use \@chapapp instead of \chaptername to avoid
+			% 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+			{\color{ctcolorfootermark}\textbf{\chapapp\ \thechapter}}%
+			\hspace{.25cm}%
+			%\protect\begin{minipage}[t]{.65\textwidth}%
+				##1%
+			%\protect\end{minipage}%
+		}{}%
+	}
+	%\cleardoublepage
+	\clearpage
+	\addcontentsline{toc}{chapter}{Приложения}%
 }
 
-%\DeclareMathSizes{9}{10.5}{7.5}{7.5}
-
-% Set line spacing to 1.5
-\RequirePackage{setspace}
-\onehalfspacing
-
-% Set text height to accommodate approximately 30 lines per page
-\setlength{\textheight}{247mm}  % Adjusted for approximately 30 lines at 12pt
-\setlength{\textwidth}{160mm}   % Set width for approximately 60 characters per line
+% Font size for mathematical expressions
+\DeclareMathSizes{10}{12}{10}{9}

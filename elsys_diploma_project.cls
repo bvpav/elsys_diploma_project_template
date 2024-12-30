@@ -60,12 +60,12 @@
 % cleanthesis style
 \RequirePackage[
 	figuresep=colon,
-	sansserif=true,
+	sansserif=false,
 	hangfigurecaption=false,
 	hangsection=true,
 	hangsubsection=true,
 	configurelistings=false,
-	colorize=full,
+	colorize=bw,
 	colortheme=bluemagenta,
 	configurebiblatex=true,
 	bibsys=biber,

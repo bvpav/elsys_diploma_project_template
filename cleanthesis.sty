@@ -233,10 +233,10 @@
 	\RequirePackage{fontspec}
 \fi
 
+\RequirePackage{dejavu}
 \ifct@cthesis@sansserif
 	% Using sans-serif fonts
 	%
-	\RequirePackage{dejavu}
 	%\renewcommand*\familydefault{\sfdefault}
 	%\RequirePackage{helvet}	% Font:	Helvetica
 	%\RequirePackage{nimbus}	% Font:	Nimbus Sans, a clone of the Helvetica
@@ -244,12 +244,14 @@
 	%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
 	%\RequirePackage[scaled]{berasans} % Font:	Bera Sans, a a version of Bitstream Vera Sans slightly enhanced
 	\renewcommand*\familydefault{\sfdefault}%
+	\def\ct@cthesis@fontname{DejaVuSans-TLF}%
 \else
 	% Using serif fonts
 	%
-	\RequirePackage{lmodern}	% font set: Latin Modern
-	\RequirePackage{charter}	% font set: Charter
+	%\RequirePackage{lmodern}	% font set: Latin Modern
+	%\RequirePackage{charter}	% font set: Charter
 	%\RequirePackage{fourier}	% font set: (basically improved utopia)
+	\def\ct@cthesis@fontname{DejaVuSerif-TLF}%
 \fi
 
 % **************************************************
@@ -512,13 +514,13 @@
 	arg1=#1, arg2=#2, arg3=#3%
 }
 % own font definitions
-\newcommand{\helv}{\fontfamily{DejaVuSans-TLF}\fontsize{10}{12}\selectfont}
-\newcommand{\book}{\fontfamily{DejaVuSans-TLF}\fontseries{m}\fontsize{10}{12}\selectfont}
-\newcommand{\customfont}{\fontfamily{DejaVuSans-TLF}\selectfont}
+\newcommand{\helv}{\fontfamily{\ct@cthesis@fontname}\fontsize{10}{12}\selectfont}
+\newcommand{\book}{\fontfamily{\ct@cthesis@fontname}\fontseries{m}\fontsize{10}{12}\selectfont}
+\newcommand{\customfont}{\fontfamily{\ct@cthesis@fontname}\selectfont}
 
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\book\fontsize{60}{60}\selectfont}
 \newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\Huge \customfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{DejaVuSans-TLF}\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{\ct@cthesis@fontname}\selectfont}
 \newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\Large\customfont}
 \newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\large \customfont}
 \newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\customfont\small\bfseries}

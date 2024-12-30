@@ -199,17 +199,20 @@
 {
 	\begin{titlepage}
 		\begin{center}
-            \begin{minipage}[t]{0.15\textwidth}
-                \vspace{0pt}
-                \includegraphics[width=\textwidth]{images/elsys_logo.png}
-            \end{minipage}%
-            \begin{minipage}[t]{0.83\textwidth}
-                \vspace{0pt}
-		\begin{center}
-                    {\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ}\\[0.5em]
-                    {към ТЕХНИЧЕСКИ УНИВЕРСИТЕТ - СОФИЯ}
-		\end{center}
-            \end{minipage}
+			\begin{minipage}[t]{\dimexpr\textwidth+2cm\relax}
+				\hspace{-1cm}
+				\begin{minipage}[t]{0.15\textwidth}
+					\vspace{0pt}
+					\includegraphics[width=\textwidth]{images/elsys_logo.png}
+				\end{minipage}%
+				\begin{minipage}[t]{0.83\textwidth}
+					\vspace{0pt}
+					\begin{center}
+						{\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ\\%
+                                   към ТЕХНИЧЕСКИ УНИВЕРСИТЕТ -- СОФИЯ}
+					\end{center}
+				\end{minipage}
+			\end{minipage}
             
             \vspace{4cm}
             
@@ -230,14 +233,14 @@
             \begin{center}
                 \begin{tabular}{l@{\hspace{2cm}}l}
                     {\large Дипломант:} & {\large Дипломен ръководител:} \\
-                    {\large\@author} & {\large\@supervisor} \\
+                    {\large\textit{\@author}} & {\large\textit{\@supervisor}} \\
                 \end{tabular}
             \end{center}
 		
 		\vfill
 		
-            {\Large \MakeUppercase{\@city}}\\[0.5em]
-            {\large\the\year}
+            {\Large\MakeUppercase{\@city}}\\[0.5em]
+            {\expandafter\large\expandafter\so\expandafter{\number\year}}
 		\end{center}
 		\normalsize
 	\end{titlepage}

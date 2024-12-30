@@ -218,8 +218,8 @@
             
             {\bfseries
                 \begin{tabular}{l}
-                    по професия код {\@professioncode} ,,{\@profession}''\\
-                    специалност код {\@specialitycode} ,,{\@speciality}''
+                    по професия код {\@professioncode} ,,{\@profession}``\\
+                    специалност код {\@specialitycode} ,,{\@speciality}``
                 \end{tabular}
             }
             \vspace{2cm}

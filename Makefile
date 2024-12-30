@@ -2,9 +2,10 @@
 .SUFFIXES:
 .PHONY: all clean
 
-TARGET = elsys_diploma_project.pdf
 MAIN_SRC = elsys_diploma_project.tex
+TARGET_NAME = elsys_diploma_project
 
+TARGET = $(TARGET_NAME).pdf
 SOURCES = elsys_diploma_project.cls cleanthesis.sty \
 	chapters/appendix.tex \
 	chapters/chapter1-research.tex \
@@ -27,7 +28,7 @@ SOURCES = elsys_diploma_project.cls cleanthesis.sty \
 all: $(TARGET)
 
 $(TARGET): $(MAIN_SRC) $(SOURCES)
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make $(MAIN_SRC)
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make -jobname=$(TARGET_NAME) $(MAIN_SRC)
 
 mostlyclean:
 	latexmk -c

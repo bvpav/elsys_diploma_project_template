@@ -32,7 +32,7 @@ $(TARGET): $(BUILD_DIR) $(MAIN_SRC) $(SOURCES)
 	$(BIBER) $(BIBER_FLAGS) $(BUILD_DIR)/$(TARGET_NAME)
 	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) -jobname=$(TARGET_NAME) $(MAIN_SRC)
 	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) -jobname=$(TARGET_NAME) $(MAIN_SRC)
-	ln $(BUILD_DIR)/$(TARGET_NAME).pdf $(TARGET)
+	ln -f $(BUILD_DIR)/$(TARGET_NAME).pdf $(TARGET)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)

@@ -203,12 +203,12 @@
 				\hspace{-1cm}
 				\begin{minipage}[t]{0.15\textwidth}
 					\vspace{0pt}
-					\includegraphics[width=\textwidth]{images/elsys_logo.png}
+					\includegraphics[width=\textwidth]{images/elsys_logo.pdf}
 				\end{minipage}%
 				\begin{minipage}[t]{0.83\textwidth}
 					\vspace{0pt}
 					\begin{center}
-						{\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ\\%
+						{\large\bfseries ТЕХНОЛОГИЧНО УЧИЛИЩЕ ЕЛЕКТРОННИ СИСТЕМИ\\%
                                    към ТЕХНИЧЕСКИ УНИВЕРСИТЕТ -- СОФИЯ}
 					\end{center}
 				\end{minipage}

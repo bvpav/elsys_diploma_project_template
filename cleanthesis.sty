@@ -233,7 +233,7 @@
 	\RequirePackage{fontspec}
 \fi
 
-\RequirePackage{dejavu}
+\RequirePackage{paratype}       % Font: PT Sans, PT Serif
 \ifct@cthesis@sansserif
 	% Using sans-serif fonts
 	%
@@ -244,14 +244,12 @@
 	%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
 	%\RequirePackage[scaled]{berasans} % Font:	Bera Sans, a a version of Bitstream Vera Sans slightly enhanced
 	\renewcommand*\familydefault{\sfdefault}%
-	\def\ct@cthesis@fontname{DejaVuSans-TLF}%
 \else
 	% Using serif fonts
 	%
 	%\RequirePackage{lmodern}	% font set: Latin Modern
 	%\RequirePackage{charter}	% font set: Charter
 	%\RequirePackage{fourier}	% font set: (basically improved utopia)
-	\def\ct@cthesis@fontname{DejaVuSerif-TLF}%
 \fi
 
 % **************************************************
@@ -402,7 +400,7 @@
 \renewcommand{\descriptionlabel}[1]{%
 	\hspace*{\labelsep}%
 	\color{ctcolorlistlabel}%
-	\customfont\textbf{#1}%
+	\ctsansseriffont\textbf{#1}%
 }
 \newenvironment{my_list_desc}
 	{\begin{description}[%
@@ -514,24 +512,24 @@
 	arg1=#1, arg2=#2, arg3=#3%
 }
 % own font definitions
-\newcommand{\helv}{\fontfamily{\ct@cthesis@fontname}\fontsize{10}{12}\selectfont}
-\newcommand{\book}{\fontfamily{\ct@cthesis@fontname}\fontseries{m}\fontsize{10}{12}\selectfont}
-\newcommand{\customfont}{\fontfamily{\ct@cthesis@fontname}\selectfont}
+\newcommand{\ctseriffont}{\fontfamily{PTSerif-TLF}\fontseries{m}\fontsize{10}{12}\selectfont}
+\newcommand{\ctsansseriffontname}{PTSans-TLF}
+\newcommand{\ctsansseriffont}{\fontfamily{\ctsansseriffontname}\selectfont}
 
-\newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\book\fontsize{60}{60}\selectfont}
-\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\Huge \customfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{\ct@cthesis@fontname}\selectfont}
-\newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\Large\customfont}
-\newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\large \customfont}
-\newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\customfont\small\bfseries}
+\newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\ctseriffont\fontsize{60}{60}\selectfont}
+\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\Huge \ctsansseriffont\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{\ctsansseriffontname}\selectfont}
+\newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\Large\ctsansseriffont}
+\newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\large \ctsansseriffont}
+\newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\ctsansseriffont\small\bfseries}
 
 \newcommand{\ctfontfooterpagenumber}{%
 	\color{ctcolorfooterpage}%
-	\normalfont\normalsize\bfseries \customfont%
+	\normalfont\normalsize\bfseries \ctsansseriffont%
 }
 \newcommand{\ctfontfootertext}{%
 	\color{ctcolorfootertitle}%
-	\normalfont \customfont%
+	\normalfont \ctsansseriffont%
 }
 %
 % headings
@@ -539,8 +537,8 @@
 \setkomafont{chapter}{\thesischapterfont} % for chapter entries
 \setkomafont{section}{\thesissectionfont} % for section entries
 \setkomafont{subsection}{\thesissubsectionfont} % for section entries
-\addtokomafont{subsubsection}{\customfont}
-%\addtokomafont{paragraph}{\customfont}
+\addtokomafont{subsubsection}{\ctsansseriffont}
+%\addtokomafont{paragraph}{\ctsansseriffont}
 \setkomafont{paragraph}{\thesisparagraphfont}
 
 %\setkomafont{subsection}{\large} % for subsection entries
@@ -654,9 +652,9 @@
 %
 % Clean chapter quotations
 \newcommand{\hugequote}{%
-	{\book\fontsize{75}{80}\selectfont%
+	{\ctseriffont\fontsize{75}{80}\selectfont%
 	\hspace*{-.500em}\color{ctcolorgraylight}%
-	\usefont{T1}{DejaVuSerif-TLF}{m}{it}{\glqq}%
+	\textit{\glqq}%
 	\vskip -.26em}%
 }
 \newcommand{\cleanchapterquote}[3]{%

@@ -2,7 +2,7 @@
 
 Шаблонът elsys_diploma_project.cls предоставя елегантен и професионален вид на дипломна работа в ТУЕС към ТУ-София.
 
-Този шаблон отговаря на [официалните изисквания](https://docs.google.com/document/d/1VzBvhvyZdmg6xZiR0t4oY2UsfA8gEJz9/edit) към структурата и оформлението на дипломната работа в ТУЕС към ТУ-София, предоставени от ръководството на ТУЕС.
+Този шаблон отговаря на [официалните изисквания](https://docs.google.com/document/d/1VzBvhvyZdmg6xZiR0t4oY2UsfA8gEJz9/export?format=pdf&attachment=false) към структурата и оформлението на дипломната работа в ТУЕС към ТУ-София, предоставени от ръководството на ТУЕС.
 
 Използвани пакети:
 
@@ -12,7 +12,7 @@
 - texlive-latexrecommended (koma-script, pdfpages, mathtools, xkeyval, xcolor, microtype, setspace, etoolbox, float, listings, caption, booktabs, fontspec, polyglossia)
 - texlive-latexextra (csvsimple, cleveref, tcolorbox, csquotes, xifthen, appendix, placeins, multirow, makecell, mathalpha, abstract, lstaddons, numprint, enumitem, blindtext)
 - texlive-fontsrecommended (lm, charter)
-- texlive-fontsextra (dejavu)
+- texlive-fontsextra (paratype)
 - texlive-mathscience (siunitx, algorithm2e)
 - texlive-pictures (circuitikz, pgf)
 - texlive-bibtexextra (biblatex)

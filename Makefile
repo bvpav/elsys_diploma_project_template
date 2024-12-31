@@ -20,7 +20,7 @@ SOURCES = elsys_diploma_project.cls cleanthesis.sty \
 	documents/sample_assignment_km.pdf \
 	documents/sample_assignment_sp.pdf \
 	images/boxplot_finger_distance.pdf \
-	images/elsys_logo.png \
+	images/elsys_logo.pdf \
 	images/relu.pdf \
 	images/synthetic_2.png \
 	images/synthetic.png \
